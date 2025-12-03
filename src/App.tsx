@@ -10,12 +10,14 @@ import Clientes from "./pages/clientes/Clientes"
 import SobreNos from "./pages/sobrenos/SobreNos"
 import Home from "./pages/home/Home"
 import { AuthProvider } from "./contexts/AuthContext"
+import { ToastContainer } from "react-toastify"
 
 function App() {
 	return (
 		<>
 		<div className="h-screen w-full flex justify-center items-center bg-(--color-picton-blue-100) ">
 				<AuthProvider>
+				<ToastContainer />
 				<BrowserRouter>
 					<Routes>
 							<Route path="/" element={<Login />} />

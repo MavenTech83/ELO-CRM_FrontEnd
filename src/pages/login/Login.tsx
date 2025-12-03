@@ -30,10 +30,7 @@ export default function Login() {
 
         handleLogin(usuarioLogin);
     }
-
-    console.log(JSON.stringify(usuarioLogin));
-
-
+    
   return (
     <div
       className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
@@ -49,13 +46,14 @@ export default function Login() {
 
           <form onSubmit={login} className="flex flex-col space-y-4">
             <input
-                            type="text"
-                            id="usuario"
-                            name="usuario"
-                            placeholder="Usuario"
-                            className="border-2 border-slate-700 rounded p-2"
-                            value={usuarioLogin.usuario}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}/> 
+                type="text"
+                id="usuario"
+                name="usuario"
+                placeholder="Usuario"
+                className="border-2 border-slate-700 rounded p-2"
+                value={usuarioLogin.usuario}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+            /> 
             <div className="flex flex-col w-full">
                         <label htmlFor="senha">Senha</label>
                         <input
@@ -69,7 +67,7 @@ export default function Login() {
                         />
                     </div>
             
-            <button className="p-3 rounded bg-blue-500 hover:bg-blue-600">
+            <button className="p-3 rounded bg-blue-500 hover:bg-blue-600" type="submit">
               {
                   isLoading ?
 

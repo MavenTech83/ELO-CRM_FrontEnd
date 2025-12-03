@@ -1,9 +1,22 @@
 import { HandshakeIcon, HeartIcon,HouseIcon, ListIcon, SignOutIcon, UserIcon, UsersFourIcon } from "@phosphor-icons/react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
+
+  const navigate = useNavigate();
+
+	const {usuario, handleLogout } = useContext(AuthContext)
+
+	function logout(){
+		handleLogout()
+		ToastAlerta('O Usuário foi desconectado com sucesso!', 'info')
+		navigate('/')
+	}
+
 
   return (
     <>
@@ -42,7 +55,7 @@ export default function Sidebar() {
            <SidebarItem icon={<HeartIcon size={22} />} label="Sobre Nós" isOpen={isOpen} />
         </Link>
        
-        <Link to='/'>
+        <Link to='/' onClick={logout}>
            <SidebarItem icon={<SignOutIcon size={32} />} label="Sair" isOpen={isOpen} />
         </Link>
        

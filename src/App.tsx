@@ -26,11 +26,8 @@ function App() {
 					</Routes>
 				</BrowserRouter>
             </div> 
-		{/* < Navbar/>
-		< Home />
-		< Footer/> */}
 		
-
+		
 		</>
 	)
 }

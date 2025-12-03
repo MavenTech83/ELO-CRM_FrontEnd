@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import type Oportunidade from "../../../models/Oportunidade"
 import { ClipLoader } from "react-spinners"
+import { buscarOportunidadePorId } from "../../../services/OportunidadeService"
 
 function DeletarOportunidade() {
     const navigate = useNavigate()

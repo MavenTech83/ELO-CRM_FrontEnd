@@ -2,7 +2,9 @@ import { useState, useContext, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import type Oportunidade from "../../../models/Oportunidade"
 import { ClipLoader } from "react-spinners"
-import { buscarOportunidadePorId } from "../../../services/OportunidadeService"
+import { buscarOportunidadePorId, deletarOportunidade as deletarOportunidadeService } from "../../../services/OportunidadeService"
+import { ToastAlerta } from "../../../utils/ToastAlerta"
+import { AuthContext } from "../../../contexts/AuthContext"
 
 function DeletarOportunidade() {
     const navigate = useNavigate()
@@ -28,7 +30,7 @@ function DeletarOportunidade() {
 
     useEffect(() => {
         if (token === '') {
-            ToastAlerta('Você precisa estar logado para realizar esta operação.')
+            ToastAlerta('Você precisa estar logado para realizar esta operação.', 'info')
             navigate('/')
         }
     }, [token])
@@ -40,24 +42,31 @@ function DeletarOportunidade() {
     }, [id])
 
     async function deletarOportunidade() {
-        setIsLoading(true)
-        try {
-            await deletarOportunidadeService(id, {
-                headers: {
-                    'Authorization': token
-                }
-            })
-            ToastAlerta('Oportunidade excluída com sucesso.')
-        } catch (error: any) {
-            if (error.toString().includes('401')) {
-                handleLogout()
-            } else {
-                ToastAlerta('Ocorreu um erro ao realizar a exclusão.')
-            }
-        }
+    setIsLoading(true)
+    
+    if (id === undefined) {
+        ToastAlerta('ID da oportunidade não encontrado.', 'erro')
         setIsLoading(false)
-        retornar()
+        return
     }
+    
+    try {
+        await deletarOportunidadeService(id, {
+            headers: {
+                'Authorization': token
+            }
+        })
+        ToastAlerta('Oportunidade excluída com sucesso.', 'sucesso')
+    } catch (error: any) {
+        if (error.toString().includes('401')) {
+            handleLogout()
+        } else {
+            ToastAlerta('Ocorreu um erro ao realizar a exclusão.', 'erro')
+        }
+    }
+    setIsLoading(false)
+    retornar()
+}
 
     function retornar() {
         navigate("/oportunidades")

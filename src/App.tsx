@@ -9,11 +9,13 @@ import Perfil from "./pages/perfil/Perfil"
 import Clientes from "./pages/clientes/Clientes"
 import SobreNos from "./pages/sobrenos/SobreNos"
 import Home from "./pages/home/Home"
+import { AuthProvider } from "./contexts/AuthContext"
 
 function App() {
 	return (
 		<>
 		<div className="h-screen w-full flex justify-center items-center bg-(--color-picton-blue-100) ">
+				<AuthProvider>
 				<BrowserRouter>
 					<Routes>
 							<Route path="/" element={<Login />} />
@@ -25,6 +27,7 @@ function App() {
 
 					</Routes>
 				</BrowserRouter>
+				</AuthProvider>
             </div> 
 		
 		

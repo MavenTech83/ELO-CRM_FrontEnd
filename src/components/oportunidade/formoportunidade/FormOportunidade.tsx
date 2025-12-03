@@ -3,7 +3,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Oportunidade from "../../../models/Oportunidade";
 import type Cliente from "../../../models/Cliente";
-
+import type TipoOportunidade from "../../../models/TipoOportunidade";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
+import { 
+    buscarOportunidadePorId as buscarOportunidadePorIdService,
+    cadastrarOportunidade as cadastrarOportunidadeService,
+    atualizarOportunidade as atualizarOportunidadeService 
+} from "../../../services/OportunidadeService";
+import { 
+    buscarTipoOportunidadePorId as buscarTipoOportunidadePorIdService,
+    buscarTiposOportunidade as buscarTiposOportunidadeService 
+} from "../../../services/TipoOportunidadeService";
+import { 
+    buscarClientePorId as buscarClientePorIdService,
+    buscarClientes as buscarClientesService 
+} from "../../../services/ClienteService";
 
 function FormOportunidade() {
 
@@ -17,15 +32,27 @@ function FormOportunidade() {
 
     const [tipoOportunidade, setTipoOportunidade] = useState<TipoOportunidade>({ 
         id: 0, 
-        descricao: '', 
+        descricao: '',
     })
     
     const [cliente, setCliente] = useState<Cliente>({ 
-        id: 0, 
-        nome: '', 
+        id: 0,
+        nome: '',
+        email: '',
+        telefone: '',
+        endereco: '',
+        oportunidade: null,
     })
     
-    const [oportunidade, setOportunidade] = useState<Oportunidade>({} as Oportunidade)
+    const [oportunidade, setOportunidade] = useState<Oportunidade>({
+        id: 0,
+        descricao: '',
+        status: '',
+        valorPotencial: '',
+        dataCricao: '',
+        tipoOportunidade: null,
+        cliente: null,
+    })
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
@@ -94,7 +121,7 @@ function FormOportunidade() {
 
     useEffect(() => {
         if (token === '') {
-            ToastAlerta('Você precisa estar logado');
+            ToastAlerta('Você precisa estar logado', 'info');
             navigate('/');
         }
     }, [token])
@@ -122,7 +149,6 @@ function FormOportunidade() {
             [e.target.name]: e.target.value,
             tipoOportunidade: tipoOportunidade,
             cliente: cliente,
-            usuario: usuario,
         });
     }
 
@@ -142,13 +168,13 @@ function FormOportunidade() {
                     },
                 });
 
-                ToastAlerta('Oportunidade atualizada com sucesso')
+                ToastAlerta('Oportunidade atualizada com sucesso', 'sucesso')
 
             } catch (error: any) {
                 if (error.toString().includes('401')) {
                     handleLogout()
                 } else {
-                    ToastAlerta('Erro ao atualizar a Oportunidade')
+                    ToastAlerta('Erro ao atualizar a Oportunidade', 'erro')
                 }
             }
 
@@ -160,13 +186,13 @@ function FormOportunidade() {
                     },
                 })
 
-                ToastAlerta('Oportunidade cadastrada com sucesso');
+                ToastAlerta('Oportunidade cadastrada com sucesso', 'sucesso');
 
             } catch (error: any) {
                 if (error.toString().includes('401')) {
                     handleLogout()
                 } else {
-                    ToastAlerta('Erro ao cadastrar a Oportunidade');
+                    ToastAlerta('Erro ao cadastrar a Oportunidade', 'erro');
                 }
             }
         }

@@ -7,6 +7,7 @@ import { buscarOportunidades } from "../../../services/OportunidadeService";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
 
+
 function ListaOportunidade() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -17,7 +18,7 @@ function ListaOportunidade() {
 
     useEffect(() => {
         if (token === '') {
-            ToastAlerta('Você precisa estar logado!')
+            ToastAlerta('Você precisa estar logado!', 'info' )
             navigate('/')
         }
     }, [token])

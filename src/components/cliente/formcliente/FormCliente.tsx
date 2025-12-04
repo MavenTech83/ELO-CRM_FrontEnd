@@ -1,15 +1,16 @@
 import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { RotatingLines } from "react-loader-spinner"
 import type Cliente from "../../../models/Cliente"
-import { atualizar, buscar, cadastrar } from "../../../services/Service"
+import { cadastrarCliente, atualizarCliente, buscarClientePorId } from "../../../services/ClienteService"
 import { ToastAlerta } from "../../../utils/ToastAlerta"
 import { AuthContext } from "../../../contexts/AuthContext"
 
 interface FormClienteProps {
-    onSuccess?: () => void; // Add onSuccess prop
-    onCancel?: () => void; // Add onCancel prop for modal
-    clienteParaEditar?: Cliente | null; // Prop for editing via props
-    isModal?: boolean; // If it's used inside a modal
+    onSuccess?: () => void;
+    onCancel?: () => void;
+    clienteParaEditar?: Cliente | null;
+    isModal?: boolean;
 }
 
 function FormCliente({
@@ -23,7 +24,12 @@ function FormCliente({
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const [cliente, setCliente] = useState<Cliente>({} as Cliente)
+    const [cliente, setCliente] = useState<Cliente>({
+        nome: "",
+        email: "",
+        telefone: "",
+        endereco: ""
+    })
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
@@ -33,9 +39,9 @@ function FormCliente({
     // Determine if it's an edit operation: via props (modal) or via URL (page)
     const isEdicao = clienteParaEditar !== null || id !== undefined;
 
-    async function buscarClientePorId(clienteId: string | number) {
+    async function buscarClientePorIdLocal(clienteId: string | number) {
         try {
-            await buscar(`/clientes/${clienteId}`, setCliente, {
+            await buscarClientePorId(String(clienteId), setCliente, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -60,21 +66,17 @@ function FormCliente({
     useEffect(() => {
         // If editing via props (modal)
         if (clienteParaEditar) {
-            setCliente(clienteParaEditar);
+            setCliente({
+                ...clienteParaEditar,
+                telefone: clienteParaEditar.telefone || "",
+                endereco: clienteParaEditar.endereco || ""
+            });
         }
         // If editing via URL (page)
         else if (id !== undefined) {
-            buscarClientePorId(id)
-        } else {
-            setCliente({
-                id: undefined,
-                nome: "",
-                email: "",
-                telefone: "",
-                endereco: "",
-            })
+            buscarClientePorIdLocal(id)
         }
-    }, [id, clienteParaEditar]) // Added clienteParaEditar to dependency array
+    }, [id, clienteParaEditar])
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setCliente({
@@ -87,9 +89,32 @@ function FormCliente({
         e.preventDefault()
         setIsLoading(true)
 
+        // Preparar dados para envio - formato limpo
+        const clienteParaEnviar: Partial<Cliente> = {
+            nome: cliente.nome.trim(),
+            email: cliente.email.trim()
+        };
+
+        // Adicionar id somente se for edição
+        if (isEdicao && cliente.id) {
+            clienteParaEnviar.id = cliente.id;
+        }
+
+        // Adicionar telefone somente se tiver valor válido
+        if (cliente.telefone && cliente.telefone.trim() !== "") {
+            clienteParaEnviar.telefone = cliente.telefone.trim();
+        }
+
+        // Adicionar endereco somente se tiver valor válido
+        if (cliente.endereco && cliente.endereco.trim() !== "") {
+            clienteParaEnviar.endereco = cliente.endereco.trim();
+        }
+
+        console.log("📤 Dados que serão enviados:", clienteParaEnviar);
+
         try {
             if (isEdicao) {
-                await atualizar("/clientes", cliente, setCliente, {
+                await atualizarCliente(clienteParaEnviar, setCliente, {
                     headers: { Authorization: token }
                 })
                 ToastAlerta("O Cliente foi atualizado com sucesso!", 'sucesso')
@@ -97,16 +122,16 @@ function FormCliente({
                 setTimeout(() => {
                     setIsLoading(false);
                     if (isModal && onSuccess) {
-                        onSuccess(); // Call onSuccess callback after successful update
-                    } else if (onSuccess) { // For non-modal, but still with callback
+                        onSuccess();
+                    } else if (onSuccess) {
                         onSuccess();
                     } else {
-                        navigate('/clientes'); // Fallback for standalone page
+                        navigate('/clientes');
                     }
                 }, 1500);
 
             } else {
-                await cadastrar("/clientes", cliente, setCliente, {
+                await cadastrarCliente(clienteParaEnviar, setCliente, {
                     headers: { Authorization: token }
                 })
                 ToastAlerta("O Cliente foi cadastrado com sucesso!", 'sucesso')
@@ -114,32 +139,39 @@ function FormCliente({
                 setTimeout(() => {
                     setIsLoading(false);
                     if (onSuccess) {
-                        onSuccess(); // Call onSuccess callback after successful registration
+                        onSuccess();
                     } else {
-                        navigate('/clientes'); // Fallback for standalone page
+                        navigate('/clientes');
                     }
                 }, 1500);
             }
         } catch (error: any) {
             setIsLoading(false)
+            console.error("❌ Erro completo:", error);
+            console.error("❌ Resposta do servidor:", error.response?.data);
+            
             if (error.toString().includes("401")) {
                 handleLogout()
                 ToastAlerta("Sessão expirada! Por favor, faça login novamente.", 'info')
                 navigate("/")
+            } else if (error.response?.status === 400) {
+                // Erro 400 - Bad Request
+                const mensagemErro = error.response?.data?.message || 
+                                    error.response?.data?.error || 
+                                    "Dados inválidos. Verifique os campos e tente novamente.";
+                ToastAlerta(mensagemErro, 'erro')
             } else {
                 ToastAlerta(isEdicao ? "Erro ao atualizar o cliente!" : "Erro ao cadastrar o cliente!", 'erro')
-                console.error(error)
             }
         }
     }
 
     // Conditional styling based on whether it's a modal or a page
     const containerClass = isModal
-        ? "p-6" // Modal: simple padding
-        : "bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden max-w-md mx-auto my-8"; // Page: complete container
+        ? "p-6"
+        : "bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden max-w-md mx-auto my-8";
 
     const headerComponent = !isModal ? (
-        // Header only for page (modal already has its own header)
         <div className="bg-gradient-to-b from-[#167cf1] to-[#005de3] px-8 py-6">
             <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
@@ -197,7 +229,7 @@ function FormCliente({
                             className="block text-sm font-semibold"
                             style={{ color: "var(--cor-texto-principal)" }}
                         >
-                            E-mail do Cliente
+                            E-mail do Cliente *
                         </label>
                         <input
                             type="email"
@@ -205,7 +237,7 @@ function FormCliente({
                             name='email'
                             className="w-full px-4 py-3 border-2 rounded-lg transition-all duration-200 outline-none font-medium
                                    placeholder-cor-texto-secundario text-cor-texto-principal
-                                   focus:border-cor-primaria focus:ring-2 focus:ring-cor-primaria focus:ring-opacity-20" // Replaced custom props with direct Tailwind classes
+                                   focus:border-cor-primaria focus:ring-2 focus:ring-cor-primaria focus:ring-opacity-20"
                             style={{
                                 borderColor: "var(--cor-borda)",
                                 backgroundColor: "var(--cor-fundo-claro)",
@@ -214,6 +246,42 @@ function FormCliente({
                             value={cliente.email || ""}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                             required
+                        />
+                    </div>
+
+                    {/* Campo Telefone - OPCIONAL */}
+                    <div className="space-y-2">
+                        <label
+                            htmlFor="telefone"
+                            className="block text-sm font-semibold text-slate-700"
+                        >
+                            Telefone
+                        </label>
+                        <input
+                            type="tel"
+                            placeholder="(00) 00000-0000"
+                            name='telefone'
+                            className="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-blue-500 transition-all duration-200 placeholder-slate-400 text-slate-900 font-medium"
+                            value={cliente.telefone || ""}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                        />
+                    </div>
+
+                    {/* Campo Endereço - OPCIONAL */}
+                    <div className="space-y-2">
+                        <label
+                            htmlFor="endereco"
+                            className="block text-sm font-semibold text-slate-700"
+                        >
+                            Endereço
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Digite o endereço"
+                            name='endereco'
+                            className="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-blue-500 transition-all duration-200 placeholder-slate-400 text-slate-900 font-medium"
+                            value={cliente.endereco || ""}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
                     </div>
 

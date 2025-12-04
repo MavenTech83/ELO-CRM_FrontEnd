@@ -27,21 +27,16 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
         <b>Status:</b>
         <div className="mt-1 max-w-xs">
           <AtualizacaoStatusSelect
-            oportunidadeId={oportunidade.id}
+            oportunidadeId={oportunidade.id || 0}
             currentStatus={oportunidade.status as any}
             onUpdated={(newStatus) => console.log("Status atualizado:", newStatus)}
           />
         </div>
       </div>
+
       <p><b>Valor Potencial:</b> {oportunidade.valorPotencial}</p>
       <p><b>Cliente:</b> {oportunidade.cliente?.nome || "Não informado"}</p>
-      <p>
-  <b>Tipo:</b>{" "}
-  {typeof (oportunidade as any).tipoOportunidade === "string"
-    ? (oportunidade as any).tipoOportunidade
-    : oportunidade.tipoOportunidade?.descricao || "Não informado"}
-</p>
-
+      <p><b>Tipo:</b> {oportunidade.tipoOportunidade || "Não informado"}</p>
       <p>
         <b>Data:</b>{" "}
         {dataValida

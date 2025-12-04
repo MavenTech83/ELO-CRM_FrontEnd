@@ -1,13 +1,11 @@
 import type Cliente from "./Cliente";
-import type { TipoOportunidade } from "./TipoOportunidade";
-
 
 export default interface Oportunidade {
-    id: number;
+    id?: number;
     descricao: string;
-    status: string;
-    valorPotencial: string;
+    status: string | boolean;  
+    valorPotencial: string | number;  
     dataCriacao: string;
-    tipoOportunidade: TipoOportunidade | null ;
+    tipoOportunidade: string; 
     cliente: Cliente | null;
 }

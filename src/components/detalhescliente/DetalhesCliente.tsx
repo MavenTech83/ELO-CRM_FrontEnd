@@ -4,7 +4,7 @@ interface Props {
   cliente: Cliente | null;
 }
 
-export default function DetalhesOportunidade({ cliente }: Props) {
+export default function DetalhesCliente({ cliente }: Props) {
   if (!cliente) {
     return (
       <div className="h-full flex items-center justify-center ">
@@ -20,11 +20,10 @@ export default function DetalhesOportunidade({ cliente }: Props) {
       </h1>
 
       <p><b>E-mail:</b> {cliente.email}</p>
-      <p><b>Endereço:</b> {cliente.endereco}</p>
-      <p><b>Telefone:</b> {cliente.telefone}</p>
+      <p><b>Endereço:</b> {cliente.endereco || "Não informado"}</p>
+      <p><b>Telefone:</b> {cliente.telefone || "Não informado"}</p>
       <p><b>Oportunidade:</b> {cliente.oportunidade?.descricao || "Não informado"}</p>
-      <p><b>Tipo Oportunidade:</b> {cliente.oportunidade?.valorPotencial || "Não informado"}</p>
-      <p><b>Tipo Oportunidade:</b> {cliente.oportunidade?.status || "Não informado"}</p>
+      <p><b>Tipo Oportunidade:</b> {cliente.oportunidade?.tipoOportunidade || "Não informado"}</p>
 
       
     </div>

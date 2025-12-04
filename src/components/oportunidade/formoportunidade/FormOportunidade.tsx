@@ -6,19 +6,20 @@ import type Cliente from "../../../models/Cliente";
 import type TipoOportunidade from "../../../models/TipoOportunidade";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
-import { 
+import {
     buscarOportunidadePorId as buscarOportunidadePorIdService,
     cadastrarOportunidade as cadastrarOportunidadeService,
-    atualizarOportunidade as atualizarOportunidadeService 
+    atualizarOportunidade as atualizarOportunidadeService
 } from "../../../services/OportunidadeService";
-import { 
+import {
     buscarTipoOportunidadePorId as buscarTipoOportunidadePorIdService,
-    buscarTiposOportunidade as buscarTiposOportunidadeService 
+    buscarTiposOportunidade as buscarTiposOportunidadeService
 } from "../../../services/TipoOportunidadeService";
-import { 
+import {
     buscarClientePorId as buscarClientePorIdService,
-    buscarClientes as buscarClientesService 
+    buscarClientes as buscarClientesService
 } from "../../../services/ClienteService";
+import AtualizacaoStatusSelect from "../../statusoportunidade/StatusOportunidade";
 
 function FormOportunidade() {
 
@@ -30,12 +31,12 @@ function FormOportunidade() {
 
     const [clientes, setClientes] = useState<Cliente[]>([])
 
-    const [tipoOportunidade, setTipoOportunidade] = useState<TipoOportunidade>({ 
-        id: 0, 
+    const [tipoOportunidade, setTipoOportunidade] = useState<TipoOportunidade>({
+        id: 0,
         descricao: '',
     })
-    
-    const [cliente, setCliente] = useState<Cliente>({ 
+
+    const [cliente, setCliente] = useState<Cliente>({
         id: 0,
         nome: '',
         email: '',
@@ -43,7 +44,7 @@ function FormOportunidade() {
         endereco: '',
         oportunidade: null,
     })
-    
+
     const [oportunidade, setOportunidade] = useState<Oportunidade>({
         id: 0,
         descricao: '',
@@ -226,19 +227,20 @@ function FormOportunidade() {
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
-                
+
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="status">Status</label>
-                    <input
-                        type="text"
-                        placeholder="Status"
-                        name="status"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                        value={oportunidade.status}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                    />
+                    <label>Status</label>
+                    <div className="mt-1">
+                        <AtualizacaoStatusSelect
+                            oportunidadeId={oportunidade.id || 0}
+                            currentStatus={(oportunidade.status as any) || "Aberta"}
+                            onUpdated={(newStatus) => {
+                                setOportunidade(prev => ({ ...prev, status: newStatus }));
+                            }}
+                        />
+                    </div>
                 </div>
+
 
                 <div className="flex flex-col gap-2">
                     <label htmlFor="valorPotencial">Valor Potencial</label>
@@ -255,12 +257,12 @@ function FormOportunidade() {
 
                 <div className="flex flex-col gap-2">
                     <p>Tipo de Oportunidade</p>
-                    <select name="tipoOportunidade" id="tipoOportunidade" 
-                        className='border p-2 border-slate-800 rounded' 
+                    <select name="tipoOportunidade" id="tipoOportunidade"
+                        className='border p-2 border-slate-800 rounded'
                         onChange={(e) => buscarTipoOportunidadePorId(e.currentTarget.value)}
                     >
                         <option value="" selected disabled>Selecione um Tipo</option>
-                        
+
                         {tiposOportunidade.map((tipo) => (
                             <option key={tipo.id} value={tipo.id}>{tipo.descricao}</option>
                         ))}
@@ -269,30 +271,30 @@ function FormOportunidade() {
                 </div>
                 <div className="flex flex-col gap-2">
                     <p>Cliente</p>
-                    <select name="cliente" id="cliente" 
-                        className='border p-2 border-slate-800 rounded' 
+                    <select name="cliente" id="cliente"
+                        className='border p-2 border-slate-800 rounded'
                         onChange={(e) => buscarClientePorId(e.currentTarget.value)}
                     >
                         <option value="" selected disabled>Selecione um Cliente</option>
-                        
+
                         {clientes.map((cliente) => (
                             <option key={cliente.id} value={cliente.id}>{cliente.nome}</option>
                         ))}
 
                     </select>
                 </div>
-               
-                <button 
-                    type='submit' 
+
+                <button
+                    type='submit'
                     className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800
                                text-white font-bold w-1/2 mx-auto py-2 flex justify-center'
                     disabled={carregandoDados}
                 >
-                    { isLoading ? 
-                        <ClipLoader 
-                            color="#ffffff" 
+                    {isLoading ?
+                        <ClipLoader
+                            color="#ffffff"
                             size={24}
-                        /> : 
+                        /> :
                         <span>{id === undefined ? 'Cadastrar' : 'Atualizar'}</span>
                     }
 

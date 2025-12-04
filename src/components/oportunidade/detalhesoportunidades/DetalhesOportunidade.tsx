@@ -1,4 +1,5 @@
 import type Oportunidade from "../../../models/Oportunidade";
+import AtualizacaoStatusSelect from "../../statusoportunidade/StatusOportunidade";
 
 interface Props {
   oportunidade: Oportunidade | null;
@@ -22,7 +23,16 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
         {oportunidade.descricao}
       </h1>
 
-      <p><b>Status:</b> {oportunidade.status}</p>
+      <div>
+        <b>Status:</b>
+        <div className="mt-1 max-w-xs">
+          <AtualizacaoStatusSelect
+            oportunidadeId={oportunidade.id}
+            currentStatus={oportunidade.status as any}
+            onUpdated={(newStatus) => console.log("Status atualizado:", newStatus)}
+          />
+        </div>
+      </div>
       <p><b>Valor Potencial:</b> {oportunidade.valorPotencial}</p>
       <p><b>Cliente:</b> {oportunidade.cliente?.nome || "Não informado"}</p>
       <p><b>Tipo:</b> {oportunidade.tipoOportunidade?.descricao || "Não informado"}</p>
@@ -31,9 +41,9 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
         <b>Data:</b>{" "}
         {dataValida
           ? new Intl.DateTimeFormat("pt-BR", {
-              dateStyle: "full",
-              timeStyle: "short",
-            }).format(dataValida)
+            dateStyle: "full",
+            timeStyle: "short",
+          }).format(dataValida)
           : "Data inválida"}
       </p>
     </div>

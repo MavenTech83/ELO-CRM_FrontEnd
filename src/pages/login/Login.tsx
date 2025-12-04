@@ -34,7 +34,7 @@ export default function Login() {
   return (
     <div
       className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('https://i.pinimg.com/originals/88/15/63/881563d6444b370fa4ceea0c3183bb4c.gif')" }}
+      style={{ backgroundImage: "url('https://ik.imagekit.io/hnkqnvn7cu/Whisk_emzxyzm5cjn1iwy40czhdtyti2nxqtl2ato10sy.gif')" }}
     >
       {/* Overlay opcional */}
       <div className="absolute inset-0 bg-black/40"></div>
@@ -42,7 +42,8 @@ export default function Login() {
       {/* Conteúdo */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="bg-white/10 backdrop-blur-xl p-10 rounded-2xl w-80 text-white">
-          <h1 className="text-3xl font-bold mb-4">Login</h1>
+          
+              <h1 className="text-3xl font-bold text-cyan-400 text-center pb-[5vh]">ELO CRM</h1>
 
           <form onSubmit={login} className="flex flex-col space-y-4">
             <input

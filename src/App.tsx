@@ -14,7 +14,6 @@ import Deletar from "./pages/deletar/Deletar"
 function App() {
 	return (
 		<>
-		<div className="h-screen w-full flex justify-center items-center bg-(--color-picton-blue-100)  ">
 				<AuthProvider>
 				<ToastContainer />
 				<BrowserRouter>
@@ -30,9 +29,7 @@ function App() {
 					</Routes>
 				</BrowserRouter>
 				</AuthProvider>
-            </div> 
-		
-		
+  	
 		</>
 	)
 }

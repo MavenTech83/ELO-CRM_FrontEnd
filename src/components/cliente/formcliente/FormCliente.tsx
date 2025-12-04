@@ -5,6 +5,7 @@ import type Cliente from "../../../models/Cliente"
 import { cadastrarCliente, atualizarCliente, buscarClientePorId } from "../../../services/ClienteService"
 import { ToastAlerta } from "../../../utils/ToastAlerta"
 import { AuthContext } from "../../../contexts/AuthContext"
+import { ClipLoader } from "react-spinners"
 
 interface FormClienteProps {
     onSuccess?: () => void;
@@ -197,138 +198,92 @@ function FormCliente({
 
 
     return (
-        <div className={containerClass}>
-            {headerComponent}
-
-            {/* Formulário */}
-            <div className={isModal ? "" : "p-8"}>
-                <form className="space-y-6" onSubmit={gerarNovoCliente}>
-                    {/* Campo Nome */}
-                    <div className="space-y-2">
-                        <label
-                            htmlFor="nome"
-                            className="block text-sm font-bold text-slate-700"
-                        >
-                            Nome do Cliente *
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Digite o nome completo"
-                            name='nome'
-                            className="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-blue-500 transition-all duration-200 placeholder-slate-400 text-slate-900 font-medium"
-                            value={cliente.nome || ""}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            required
-                        />
-                    </div>
-
-                    {/* Campo Email */}
-                    <div className="space-y-2">
-                        <label
-                            htmlFor="email"
-                            className="block text-sm font-semibold"
-                            style={{ color: "var(--cor-texto-principal)" }}
-                        >
-                            E-mail do Cliente *
-                        </label>
-                        <input
-                            type="email"
-                            placeholder="Digite o e-mail"
-                            name='email'
-                            className="w-full px-4 py-3 border-2 rounded-lg transition-all duration-200 outline-none font-medium
-                                   placeholder-cor-texto-secundario text-cor-texto-principal
-                                   focus:border-cor-primaria focus:ring-2 focus:ring-cor-primaria focus:ring-opacity-20"
-                            style={{
-                                borderColor: "var(--cor-borda)",
-                                backgroundColor: "var(--cor-fundo-claro)",
-                                color: "var(--cor-texto-preto)",
-                            }}
-                            value={cliente.email || ""}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                            required
-                        />
-                    </div>
-
-                    {/* Campo Telefone - OPCIONAL */}
-                    <div className="space-y-2">
-                        <label
-                            htmlFor="telefone"
-                            className="block text-sm font-semibold text-slate-700"
-                        >
-                            Telefone
-                        </label>
-                        <input
-                            type="tel"
-                            placeholder="(00) 00000-0000"
-                            name='telefone'
-                            className="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-blue-500 transition-all duration-200 placeholder-slate-400 text-slate-900 font-medium"
-                            value={cliente.telefone || ""}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        />
-                    </div>
-
-                    {/* Campo Endereço - OPCIONAL */}
-                    <div className="space-y-2">
-                        <label
-                            htmlFor="endereco"
-                            className="block text-sm font-semibold text-slate-700"
-                        >
-                            Endereço
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Digite o endereço"
-                            name='endereco'
-                            className="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-blue-500 transition-all duration-200 placeholder-slate-400 text-slate-900 font-medium"
-                            value={cliente.endereco || ""}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        />
-                    </div>
-
-                    {/* Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t-2 border-slate-100">
-                        <button
-                            type='submit'
-                            className='flex-1 inline-flex items-center justify-center px-8 py-4 bg-gradient-to-b from-[#167cf1] to-[#005de3] hover:from-indigo-700 hover:to-[#005de3] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-lg'
-                            disabled={isLoading}
-                        >
-                            {isLoading ? (
-                                <>
-                                    <RotatingLines
-                                        strokeColor="white"
-                                        strokeWidth="5"
-                                        animationDuration="0.75"
-                                        width="24"
-                                        visible={true}
-                                    />
-                                    <span className="ml-3">Processando...</span>
-                                </>
-                            ) : (
-                                <>
-                                    <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    {isEdicao ? 'Atualizar Cliente' : 'Cadastrar Cliente'}
-                                </>
-                            )}
-                        </button>
-
-                        {onCancel && (
-                            <button
-                                type='button'
-                                className='flex-1 inline-flex items-center justify-center px-8 py-4 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-slate-500 focus:ring-offset-2 text-lg'
-                                onClick={onCancel}
-                                disabled={isLoading}
-                            >
-                                <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                                Cancelar
-                            </button>
-                        )}
-                    </div>
-                </form>
-            </div>
+        <div className="container flex flex-col mx-auto items-center">
+            <h1 className="text-4xl text-center my-8">
+                {isEdicao ? "Editar Cliente" : "Cadastrar Cliente"}
+            </h1>
+    
+            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoCliente}>
+    
+                {/* NOME */}
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="nome">Nome do Cliente</label>
+                    <input
+                        type="text"
+                        placeholder="Nome completo"
+                        name="nome"
+                        required
+                        className="border-2 border-slate-700 rounded p-2"
+                        value={cliente.nome || ""}
+                        onChange={atualizarEstado}
+                    />
+                </div>
+    
+                {/* EMAIL */}
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="email"
+                        placeholder="cliente@email.com"
+                        name="email"
+                        required
+                        className="border-2 border-slate-700 rounded p-2"
+                        value={cliente.email || ""}
+                        onChange={atualizarEstado}
+                    />
+                </div>
+    
+                {/* TELEFONE */}
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="telefone">Telefone</label>
+                    <input
+                        type="text"
+                        placeholder="(00) 00000-0000"
+                        name="telefone"
+                        className="border-2 border-slate-700 rounded p-2"
+                        value={cliente.telefone || ""}
+                        onChange={atualizarEstado}
+                    />
+                </div>
+    
+                {/* ENDEREÇO */}
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="endereco">Endereço</label>
+                    <input
+                        type="text"
+                        placeholder="Rua, número, bairro..."
+                        name="endereco"
+                        className="border-2 border-slate-700 rounded p-2"
+                        value={cliente.endereco || ""}
+                        onChange={atualizarEstado}
+                    />
+                </div>
+    
+                {/* BOTÕES */}
+                <button
+                    type="submit"
+                    className="rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800
+                               text-white font-bold w-1/2 mx-auto py-2 flex justify-center"
+                    disabled={isLoading}
+                >
+                    {isLoading ? (
+                        <ClipLoader color="#ffffff" size={24} />
+                    ) : (
+                        <span>{isEdicao ? "Atualizar" : "Cadastrar"}</span>
+                    )}
+                </button>
+    
+                {onCancel && (
+                    <button
+                        type="button"
+                        onClick={onCancel}
+                        className="rounded bg-slate-300 hover:bg-slate-400
+                                   text-black font-bold w-1/2 mx-auto py-2 flex justify-center"
+                    >
+                        Cancelar
+                    </button>
+                )}
+            </form>
         </div>
     );
 }

@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import type Cliente from "../../../models/Cliente"
 import { buscar, deletar } from "../../../services/Service"
 import { ToastAlerta } from "../../../utils/ToastAlerta"
-// import { RotatingLines } from "react-loader-spinner"
 import { AuthContext } from "../../../contexts/AuthContext"
 import { ClipLoader } from "react-spinners"
 
@@ -33,10 +32,10 @@ function DeletarCliente() {
     }
 
     useEffect(() => {
-                if (token === "") {
-                    ToastAlerta("Você precisa estar logado!", 'info')
-                    navigate("/")
-                }
+        if (token === "") {
+            ToastAlerta("Você precisa estar logado!", 'info')
+            navigate("/")
+        }
     }, [token])
 
     useEffect(() => {
@@ -72,40 +71,55 @@ function DeletarCliente() {
     }
 
     return (
-        <div className='container mx-auto p-4 md:p-8 max-w-lg'>
-            <h1 className='text-4xl text-center font-bold mb-6 text-gray-800 dark:text-white'>Deletar Cliente</h1>
-            <p className='text-center text-lg mb-6 text-gray-600 dark:text-gray-200'>
-                Você tem certeza de que deseja apagar o cliente a seguir?</p>
-            <div className='border border-gray-300 rounded-xl overflow-hidden shadow-lg bg-white '>
+        <div className='container w-2/3 mx-auto'>
+            <h1 className='text-4xl text-center my-4'>Deletar Cliente</h1>
+            <p className='text-center font-semibold mb-4'>
+                Você tem certeza de que deseja excluir o Cliente do sistema?
+            </p>
+
+            <div className='bg-white/20 border-e-4 border-b-4 border flex flex-col rounded-2xl overflow-hidden justify-between'>
                 <header 
-                    className='py-3 px-6 bg-[#005de3] dark:bg-[#1e78ff] text-white font-semibold text-2xl'>
-                    Detalhes do Cliente
+                    className='py-2 px-6 font-bold text-2xl'>
+                    Cliente
                 </header>
-                <p className='p-8 text-3xl font-medium text-gray-800 bg-gray-50 h-full'>
-                    <span className="font-bold">Nome:</span> {cliente.nome}
-                </p>
-                <div className="flex justify-evenly border-t border-gray-300">
+
+                <hr className='border' />
+
+                <div className="p-4">
+                    <p className='text-xl font-semibold mb-2'>
+                        {cliente.nome || 'Nome não informado'}
+                    </p>
+                    <p className='text-sm text-gray-600'>
+                        E-mail: {cliente.email || 'Não informado'}
+                    </p>
+                    <p className='text-sm text-gray-600'>
+                        Telefone: {cliente.telefone || 'Não informado'}
+                    </p>
+                    <p className='text-sm text-gray-600'>
+                        Endereço: {cliente.endereco || 'Não informado'}
+                    </p>
+                </div>
+
+                <hr className='border' />
+
+                <div className="flex">
                     <button 
-                        className='w-full py-3 text-lg font-semibold text-red-700 bg-red-100 
-                                   hover:bg-red-200 transition duration-300 ease-in-out'
-                        onClick={retornar}
-                    >
+                        className='hover:bg-white/50 w-full py-2 border-e-2'
+                        onClick={retornar}>
                         Não
                     </button>
                     <button 
-                        className='w-full py-3 text-lg font-semibold text-white bg-[#005de3] 
-                                   hover:bg-[#004ac9] transition duration-300 ease-in-out 
-                                   flex items-center justify-center space-x-2'
+                        className='hover:bg-white/50 w-full py-2 border-e-2r flex items-center justify-center'
                         onClick={deletarCliente}
+                        disabled={isLoading}
                     >
-                        {isLoading ? (
+                        {isLoading ? 
                             <ClipLoader 
                                 color="#ffffff" 
                                 size={24}
-                            /> 
-                            ) : ( 
+                            /> : 
                             <span>Sim</span>
-                        )}
+                        }
                     </button>
                 </div>
             </div>

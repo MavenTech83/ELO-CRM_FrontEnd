@@ -1,27 +1,104 @@
 import Layout from "../../components/layout/Layout"
-import ModalOportunidade from "../../components/oportunidade/modaloportunidade/ModalOportunidade"
+import { useNavigate } from "react-router-dom"
+import type Oportunidade from "../../models/Oportunidade"
+import ListaOportunidade from "../../components/oportunidade/listaoportunidade/ListaOportunidade"
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import FormOportunidade from "../../components/oportunidade/formoportunidade/FormOportunidade";
+import FormCliente from "../../components/cliente/formcliente/FormCliente";
 
 function Home() {
-  return (
-    <>
-    <Layout>
-		<div className="flex-1 transition-all duration-300">
-			<div className="flex flex-col">
-			<div className="pt-1">
-					<section className="bg-white/20 min-h-[36vh] rounded-4xl p-3">Exemplo area 3</section>
-				</div>
-				<div className="pt-2 grid grid-cols-2 gap-2 w-full">
-						<section className="bg-white/20 h-[40vh]  rounded-4xl p-3">Exemplo area 1 </section>
-						<section className="bg-white/20 h-[40vh] rounded-4xl p-3">Exemplo area 2 <ModalOportunidade/></section>
-				</div>
-			
-			</div>
+	const navigate = useNavigate()
 
-		</div>
-    </Layout>
-    </>
-     
-  )
+	const handleSelectOportunidade = (oportunidade: Oportunidade) => {
+		console.log("Oportunidade selecionada:", oportunidade.id)
+	}
+
+	return (
+		<>
+			<Layout>
+				<div className="flex-1 transition-all duration-300">
+					<div className="flex flex-col">
+
+						{/* SEÇÃO SUPERIOR ... (mantém igual) */}
+						<div className="grid grid-cols-2 gap-2 w-full">
+						
+						
+							
+						</div>
+
+						{/* SEÇÃO INFERIOR */}
+						<div className="pt-1">
+							<section className="bg-white/20 h-[60vh] rounded-4xl p-3">
+								<div className="grid grid-cols-[3fr_1fr] gap-4 h-full">
+
+									<div className="bg-(--color-picton-blue-200) rounded-3xl p-4 flex flex-col h-full w-full gap-1 overflow-hidden">
+										<div className="flex items-center justify-between mb-4 flex-none">
+											<h2 className="text-3xl font-bold text-(--color-picton-blue-950)">
+												Oportunidades
+											</h2>
+
+
+											<Popup
+												trigger={
+													<button className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-2xl text-base font-semibold shadow-md">
+														Cadastrar Nova oportunidade
+													</button>
+												}
+												modal
+												nested
+												contentStyle={{
+													borderRadius: '1rem',
+													width: 'auto',     // Ajusta largura automática
+													maxWidth: '800px'  // Limite máximo para não estourar
+												}}
+											>
+
+												<div>
+													<FormOportunidade />
+												</div>
+											</Popup>
+
+										</div>
+
+										<div className="flex-1 overflow-y-auto min-h-0 space-y-2 pr-2">
+											<ListaOportunidade onSelect={handleSelectOportunidade} />
+										</div>
+									</div>
+
+									<div className="flex items-center justify-center h-full overflow-hidden">
+
+										<Popup
+											trigger={
+												<button
+													className="bg-(--color-picton-blue-950) hover:bg-(--color-picton-blue-800) text-white px-8 py-6 rounded-2xl text-xl font-semibold shadow-md h-full w-full flex flex-col items-center justify-center gap-1"
+												>
+													<span>Cadastrar Novo</span>
+													<span className="text-2xl">Cliente</span>
+												</button>
+											}
+											modal
+											nested
+											contentStyle={{
+												borderRadius: '1rem',
+												width: 'auto',
+												maxWidth: '800px'
+											}}
+										>
+											{/* O COMPONENTE DO FORMULÁRIO ENTRA AQUI */}
+											<div>
+												<FormCliente />
+											</div>
+										</Popup>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</Layout>
+		</>
+	)
 }
 
 export default Home

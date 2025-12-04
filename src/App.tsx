@@ -1,8 +1,5 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-// import Footer from "./components/footer/Footer"
-// import Navbar from "./components/navbar/Navbar"
-// import Home from "./pages/home_jessica/Home"
 import Login from "./pages/login/Login"
 import Oportunidades from "./pages/oportunidades/Oportunidades"
 import Perfil from "./pages/perfil/Perfil"
@@ -14,12 +11,16 @@ import SobreProjeto from "./pages/sobre_projeto/SobreProjeto"
 function App() {
 	return (
 		<>
-		< SobreProjeto />
-		< Navbar/>
-		< Home />
-		< Footer/> */}
-		
-
+				<BrowserRouter>
+					<Routes>
+							<Route path="/" element={<Login />} />
+							<Route path="/home" element={< Home />} />
+							<Route path="/oportunidades" element={< Oportunidades />} />
+							<Route path="/perfil" element={<Perfil />} />
+							<Route path="/clientes" element={<Clientes />} />
+							<Route path="/sobrenos" element={<SobreNos />} />
+					</Routes>
+				</BrowserRouter>
 		</>
 	)
 }

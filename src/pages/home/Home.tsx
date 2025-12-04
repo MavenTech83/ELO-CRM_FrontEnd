@@ -32,9 +32,9 @@ function Home() {
 							<section className="bg-white/20 h-[60vh] rounded-4xl p-3">
 								<div className="grid grid-cols-[3fr_1fr] gap-4 h-full">
 
-									<div className="bg-(--color-picton-blue-200) rounded-3xl p-4 flex flex-col h-full w-full gap-1 overflow-hidden">
+									<div className="bg-(--color-picton-blue-800) rounded-3xl p-4 flex flex-col h-full w-full gap-1 overflow-hidden">
 										<div className="flex items-center justify-between mb-4 flex-none">
-											<h2 className="text-3xl font-bold text-(--color-picton-blue-950)">
+											<h2 className="text-3xl font-bold text-(--color-picton-blue-950)  text-amber-50 (--color-picton-blue-200)">
 												Oportunidades
 											</h2>
 

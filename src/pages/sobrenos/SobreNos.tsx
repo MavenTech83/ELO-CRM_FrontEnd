@@ -54,7 +54,7 @@ function SobreNos() {
           <div>
               <div className="h-full flex flex-col items-center justify-center gap-4 ">
           <div className="text-center mb-2 mt-2 text-(--color-picton-blue-950)">
-          <h2 className='text-4xl font-bold mb-4'>
+          <h2 className='text-4xl font-bold mb-4 '>
                Sobre Nós
           </h2>
           <p className='text-2xl font-semibold'>
@@ -63,7 +63,7 @@ function SobreNos() {
      </div> 
 
           </div>
-          <div className="grid grid-cols-5 justify-between gap-2 p-2 h-[50vh] items-start">
+          <div className="grid grid-cols-5 justify-between gap-2 p-2 h-[50vh] items-start  text-amber-50 (--color-picton-blue-200)">
                {desenvolvedoras.map((dev) => (
                     <div className="bg-(--color-picton-blue-150) backdrop-blur-sm rounded-lg p-2 flex flex-col items-center justify-center gap-6 hover:bg-(--color-picton-blue-200) transition">
                          <img

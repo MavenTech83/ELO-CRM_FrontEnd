@@ -8,7 +8,7 @@ interface Props {
 export default function DetalhesOportunidade({ oportunidade }: Props) {
   if (!oportunidade) {
     return (
-      <div className="h-full flex items-center justify-center ">
+      <div className="h-full flex items-center justify-center  text-amber-50 (--color-picton-blue-200) ">
         Selecione uma oportunidade ao lado
       </div>
     );
@@ -18,8 +18,8 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
   const dataValida = isNaN(data.getTime()) ? null : data;
 
   return (
-    <div className="space-y-3 animate-fadeIn">
-      <h1 className="text-2xl font-bold">
+    <div className="space-y-3 animate-fadeIn  ">
+      <h1 className="text-2xl font-bold  text-amber-50 (--color-picton-blue-200)">
         {oportunidade.descricao}
       </h1>
 

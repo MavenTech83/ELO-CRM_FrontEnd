@@ -1,10 +1,11 @@
+// src/components/.../FormOportunidade.tsx
 import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 
 import type Oportunidade from "../../../models/Oportunidade";
 import type Cliente from "../../../models/Cliente";
-import type { TipoOportunidade } from "../../../models/TipoOportunidade";
+import type { TipoOportunidade } from "../../../models/TipoOportunidade"; // ajuste se seu model exporta default
 
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
@@ -23,6 +24,8 @@ import {
 import AtualizacaoStatusSelect from "../../statusoportunidade/StatusOportunidade";
 import TIPOS_FALLBACK from "../../../data/TiposOportunidade";
 
+
+
 export default function FormOportunidade() {
   const navigate = useNavigate();
   const { usuario, handleLogout } = useContext(AuthContext);
@@ -36,7 +39,7 @@ export default function FormOportunidade() {
   const [clientes, setClientes] = useState<Cliente[]>([]);
 
   // estados selecionados
-  const [tipoOportunidadeSelecionado, setTipoOportunidadeSelecionado] = useState<TipoOportunidade>({ id: 0, descricao: "" });
+  const [tipoOportunidade, setTipoOportunidade] = useState<TipoOportunidade>({ id: 0, descricao: "" });
   const [cliente, setCliente] = useState<Cliente>({
     id: 0,
     nome: "",
@@ -53,7 +56,7 @@ export default function FormOportunidade() {
     status: "Aberta",
     valorPotencial: "",
     dataCriacao: "",
-    tipoOportunidade: "",  // ← STRING
+    tipoOportunidade: null,
     cliente: null,
   });
 
@@ -68,6 +71,7 @@ export default function FormOportunidade() {
       else console.error(error);
     }
   }
+
 
   async function buscarClientePorId(idCli: string) {
     try {
@@ -114,13 +118,16 @@ export default function FormOportunidade() {
   }, [token]);
 
   useEffect(() => {
+    // carrega listas sempre
     buscarTiposOportunidade();
     buscarClientes();
+
+    // se for edição, busca a oportunidade
     if (id !== undefined) buscarOportunidadePorId(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  // quando a oportunidade for carregada, mapeia cliente e tipo
+  // sempre que a oportunidade for carregada, mapeia cliente e tipo para os estados locais
   useEffect(() => {
     if (!oportunidade) return;
 
@@ -128,27 +135,37 @@ export default function FormOportunidade() {
       setCliente(oportunidade.cliente);
     }
 
-    // tipoOportunidade agora é string!
-    if (oportunidade.tipoOportunidade && oportunidade.tipoOportunidade.trim() !== "") {
+    const tipoFromApi: any = (oportunidade as any).tipoOportunidade;
+    if (typeof tipoFromApi === "string" && tipoFromApi.trim() !== "") {
       const found = tiposOportunidade.find(
-        t => t.descricao.trim().toLowerCase() === oportunidade.tipoOportunidade.trim().toLowerCase()
+        t => t.descricao.trim().toLowerCase() === tipoFromApi.trim().toLowerCase()
       );
-      if (found) {
-        setTipoOportunidadeSelecionado(found);
-      } else {
-        // se não encontrar na lista, cria um temporário
-        setTipoOportunidadeSelecionado({ id: 0, descricao: oportunidade.tipoOportunidade });
-      }
+      if (found) setTipoOportunidade(found);
+      else setTipoOportunidade({ id: 0, descricao: tipoFromApi });
+    } else if (tipoFromApi && typeof tipoFromApi === "object") {
+      setTipoOportunidade(tipoFromApi as TipoOportunidade);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [oportunidade, tiposOportunidade]);
 
+  // sincroniza oportunidade quando tipo ou cliente mudam
+  useEffect(() => {
+    setOportunidade(prev => ({
+      ...prev,
+      tipoOportunidade: tipoOportunidade && tipoOportunidade.id !== 0 ? tipoOportunidade : null,
+      cliente: cliente && cliente.id !== 0 ? cliente : null,
+    }));
+  }, [tipoOportunidade, cliente]);
+  
+
   // ------------------- handlers -------------------
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
     setOportunidade(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+        ...prev,
+        [e.target.name]: e.target.value,
+        tipoOportunidade: tipoOportunidade && tipoOportunidade.id !== 0 ? tipoOportunidade : null,
+        cliente: cliente && cliente.id !== 0 ? cliente : null,
+      }));
   }
 
   function retornar() {
@@ -158,36 +175,38 @@ export default function FormOportunidade() {
   async function gerarNovaOportunidade(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-
+  
+    
     const payload: any = { ...oportunidade };
-
-    // tipoOportunidade -> enviar como string
-    payload.tipoOportunidade = tipoOportunidadeSelecionado?.descricao || "";
-
+  
+    // tipoOportunidade -> enviar como string 
+    payload.tipoOportunidade = tipoOportunidade?.descricao ?? (typeof payload.tipoOportunidade === "string" ? payload.tipoOportunidade : "");
+  
     // valorPotencial -> número sem formatação
     const rawValor = String(payload.valorPotencial ?? "").replace(/\s+/g, "").replace(",", ".");
     payload.valorPotencial = Number(rawValor);
     if (isNaN(payload.valorPotencial)) payload.valorPotencial = 0;
-
-    // status -> normalizar para boolean
+  
+    // status -> normalizar para boolean se o backend quiser boolean
     if (typeof payload.status === "string") {
       const s = payload.status.trim().toLowerCase();
       payload.status = (s === "aberta" || s === "true" || s === "1");
     }
-
-    // cliente
+  
+    // cliente 
     if (cliente && cliente.id && cliente.id !== 0) {
       payload.cliente = { id: cliente.id };
     } else {
       payload.cliente = null;
     }
-
+  
     // dataCriacao -> garantir formato YYYY-MM-DD
     if (!payload.dataCriacao) {
-      payload.dataCriacao = new Date().toISOString().slice(0, 10);
+      payload.dataCriacao = new Date().toISOString().slice(0, 10); // hoje YYYY-MM-DD
     }
-
-    // validação mínima
+  
+  
+    // validação mínima (evita 400 por campos faltando)
     if (!payload.descricao || payload.descricao.trim() === "") {
       ToastAlerta("A descrição é obrigatória", "info");
       setIsLoading(false);
@@ -203,36 +222,39 @@ export default function FormOportunidade() {
       setIsLoading(false);
       return;
     }
-
+  
     try {
       if (id !== undefined) {
-        await atualizarOportunidadeService(payload, setOportunidade, {
+        const res = await atualizarOportunidadeService(payload, setOportunidade, {
           headers: { Authorization: token }
         });
+        console.log("Resposta update:", res);
         ToastAlerta("Oportunidade atualizada com sucesso", "sucesso");
       } else {
-        await cadastrarOportunidadeService(payload, setOportunidade, {
+        const res = await cadastrarOportunidadeService(payload, setOportunidade, {
           headers: { Authorization: token }
         });
+        console.log("Resposta create:", res);
         ToastAlerta("Oportunidade cadastrada com sucesso", "sucesso");
       }
       retornar();
     } catch (error: any) {
-      console.error("Erro axios:", error);
+      console.error("Erro axios (detalhe):", error);
       if (error.response) {
+        // Mostra detalhes que a API pode ter retornado
         console.error("Status:", error.response.status);
         console.error("Response data:", error.response.data);
         ToastAlerta(`Erro ${error.response.status}: ${JSON.stringify(error.response.data)}`, "erro");
       } else {
-        ToastAlerta("Erro ao salvar a Oportunidade", "erro");
+        ToastAlerta("Erro ao salvar a Oportunidade (sem resposta do servidor)", "erro");
       }
     } finally {
       setIsLoading(false);
     }
-  }
+  }  
 
   // botão habilitado apenas quando tipo e cliente selecionados
-  const carregandoDados = tipoOportunidadeSelecionado.descricao === "" || cliente.nome === "";
+  const carregandoDados = tipoOportunidade.descricao === "" || cliente.nome === "";
 
   // ------------------- render -------------------
   return (
@@ -285,12 +307,12 @@ export default function FormOportunidade() {
             name="tipoOportunidade"
             id="tipoOportunidade"
             className="border p-2 border-slate-800 rounded"
-            value={tipoOportunidadeSelecionado.id || ""}
+            value={tipoOportunidade.id || ""}
             onChange={e => {
               const idSel = Number(e.currentTarget.value);
               const found = tiposOportunidade.find(t => t.id === idSel);
-              if (found) setTipoOportunidadeSelecionado(found);
-              else setTipoOportunidadeSelecionado({ id: 0, descricao: "" });
+              if (found) setTipoOportunidade(found);
+              else setTipoOportunidade({ id: 0, descricao: "" });
             }}
           >
             <option value="" disabled>

@@ -36,7 +36,13 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
 
       <p><b>Valor Potencial:</b> {oportunidade.valorPotencial}</p>
       <p><b>Cliente:</b> {oportunidade.cliente?.nome || "Não informado"}</p>
-      <p><b>Tipo:</b> {oportunidade.tipoOportunidade || "Não informado"}</p>
+      <p>
+  <b>Tipo:</b>{" "}
+  {typeof (oportunidade as any).tipoOportunidade === "string"
+    ? (oportunidade as any).tipoOportunidade
+    : oportunidade.tipoOportunidade?.descricao || "Não informado"}
+</p>
+
       <p>
         <b>Data:</b>{" "}
         {dataValida

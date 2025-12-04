@@ -3,10 +3,6 @@ import type UsuarioLogin from "../models/UsuarioLogin";
 import { login } from "../services/Service";
 import { ToastAlerta } from "../utils/ToastAlerta";
 
-
-
-
-
 interface AuthContexProps {
     usuario: UsuarioLogin
     handleLogout(): void
@@ -39,7 +35,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsLoading(true);
 
         try {
-            await login(`/usuarios/logar`, usuarioLogin, setUsuario,);
+            await login('/usuarios/logar', usuarioLogin, setUsuario);
             ToastAlerta("Usuario autenticado com sucesso", "sucesso");
         } catch (error) {
             ToastAlerta("Os dados do usuario estão incosistentes!", "erro")

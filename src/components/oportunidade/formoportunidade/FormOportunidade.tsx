@@ -175,30 +175,83 @@ export default function FormOportunidade() {
   async function gerarNovaOportunidade(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-
+  
+    
     const payload: any = { ...oportunidade };
-    payload.tipoOportunidade = tipoOportunidade?.descricao || "";
-
+  
+    // tipoOportunidade -> enviar como string 
+    payload.tipoOportunidade = tipoOportunidade?.descricao ?? (typeof payload.tipoOportunidade === "string" ? payload.tipoOportunidade : "");
+  
+    // valorPotencial -> número sem formatação
+    const rawValor = String(payload.valorPotencial ?? "").replace(/\s+/g, "").replace(",", ".");
+    payload.valorPotencial = Number(rawValor);
+    if (isNaN(payload.valorPotencial)) payload.valorPotencial = 0;
+  
+    // status -> normalizar para boolean se o backend quiser boolean
+    if (typeof payload.status === "string") {
+      const s = payload.status.trim().toLowerCase();
+      payload.status = (s === "aberta" || s === "true" || s === "1");
+    }
+  
+    // cliente 
+    if (cliente && cliente.id && cliente.id !== 0) {
+      payload.cliente = { id: cliente.id };
+    } else {
+      payload.cliente = null;
+    }
+  
+    // dataCriacao -> garantir formato YYYY-MM-DD
+    if (!payload.dataCriacao) {
+      payload.dataCriacao = new Date().toISOString().slice(0, 10); // hoje YYYY-MM-DD
+    }
+  
+  
+    // validação mínima (evita 400 por campos faltando)
+    if (!payload.descricao || payload.descricao.trim() === "") {
+      ToastAlerta("A descrição é obrigatória", "info");
+      setIsLoading(false);
+      return;
+    }
+    if (!payload.tipoOportunidade || payload.tipoOportunidade.trim() === "") {
+      ToastAlerta("Selecione um tipo de oportunidade", "info");
+      setIsLoading(false);
+      return;
+    }
+    if (!payload.cliente) {
+      ToastAlerta("Selecione um cliente", "info");
+      setIsLoading(false);
+      return;
+    }
+  
     try {
       if (id !== undefined) {
-        await atualizarOportunidadeService(payload, setOportunidade, {
+        const res = await atualizarOportunidadeService(payload, setOportunidade, {
           headers: { Authorization: token }
         });
+        console.log("Resposta update:", res);
         ToastAlerta("Oportunidade atualizada com sucesso", "sucesso");
       } else {
-        await cadastrarOportunidadeService(payload, setOportunidade, {
+        const res = await cadastrarOportunidadeService(payload, setOportunidade, {
           headers: { Authorization: token }
         });
+        console.log("Resposta create:", res);
         ToastAlerta("Oportunidade cadastrada com sucesso", "sucesso");
       }
       retornar();
     } catch (error: any) {
-      if (error.toString().includes("401")) handleLogout();
-      else ToastAlerta("Erro ao salvar a Oportunidade", "erro");
+      console.error("Erro axios (detalhe):", error);
+      if (error.response) {
+        // Mostra detalhes que a API pode ter retornado
+        console.error("Status:", error.response.status);
+        console.error("Response data:", error.response.data);
+        ToastAlerta(`Erro ${error.response.status}: ${JSON.stringify(error.response.data)}`, "erro");
+      } else {
+        ToastAlerta("Erro ao salvar a Oportunidade (sem resposta do servidor)", "erro");
+      }
     } finally {
       setIsLoading(false);
     }
-  }
+  }  
 
   // botão habilitado apenas quando tipo e cliente selecionados
   const carregandoDados = tipoOportunidade.descricao === "" || cliente.nome === "";

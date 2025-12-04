@@ -7,12 +7,12 @@ interface CardOportunidadeProps {
 
 function CardOportunidade({ oportunidade }: CardOportunidadeProps) {
     return (
-        <div className='flex flex-col rounded overflow-hidden justify-between pb-2'>
+        <div className='flex flex-col rounded overflow-hidden justify-between pb-2 max-w-xl'>
                 
             <div>
                 <div className='bg-white/20 rounded-2xl border border-e-4 border-b-4'>
-                    <header className='p-2 '>
-                        {oportunidade.descricao} 
+                    <header className='p-3 px-4'>
+                        <p className="font-medium">{oportunidade.descricao}</p>
                     </header>
                     <hr className='border'/>
                     <div className="flex">

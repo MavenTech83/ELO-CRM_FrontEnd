@@ -51,11 +51,11 @@ function CardClientes({ cliente }: CardClientesProps) {
             <div className='flex flex-col rounded overflow-hidden justify-between pb-2'>
                 
             </div>
-            <div className='bg-white/20 rounded-2xl border border-e-4 border-b-4'>
+            <div className='bg-white/10 rounded-2xl border border-e-4 border-b-4 border-amber-50 text-amber-50 (--color-picton-blue-200)'>
                     <header className='p-2 '>
                         {cliente.nome} 
                     </header>
-                    <hr className='border'/>
+                    <hr className='border-amber-50'/>
                     <div className="flex">
                         <Link 
                             to={`/editarcliente/${cliente.id}`} 

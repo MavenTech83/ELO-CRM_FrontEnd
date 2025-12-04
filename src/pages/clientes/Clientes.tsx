@@ -14,7 +14,7 @@ function Clientes() {
                 {/* <!-- Coluna 1 --> */}
 				<div className="h-full w-1/2">
 					<div className="p-2 rounded-4xl shadow h-full overflow-y-auto scroll-smooth">
-						<h1 className="text-2xl font-bold">Clientes</h1>
+						<h1 className="text-2xl font-bold text-amber-50">Clientes</h1>
 						<ListaClientes onSelect={setSelectedCard}/>
 					</div>
 				</div>

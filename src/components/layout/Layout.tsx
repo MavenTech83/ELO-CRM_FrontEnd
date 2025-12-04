@@ -50,7 +50,7 @@ export default function Layout({ children }: LayoutProps) {
 				{/* DIV PRINCIPAL “FLUTUANDO” */}
 				{/* DIV PRINCIPAL – versão corrigida */}
 				{/* DIV PRINCIPAL “FLUTUANDO” */}
-				<div className="w-[80vw] sm:h-screen md:h-[80vh] sm:mt-0 rounded-3xl shadow-3xl bg-(--color-picton-blue-800)/50 overflow-auto md:overflow-hidden flex min-h-0">
+				<div className="w-[80vw] sm:h-screen md:h-[80vh] sm:mt-0 rounded-3xl shadow-3xl bg-(--color-picton-blue-800) overflow-auto md:overflow-hidden flex min-h-0">
 					{/* Sidebar */}
 					<nav>
 						<Sidebar />

@@ -7,15 +7,15 @@ interface Props {
 export default function DetalhesCliente({ cliente }: Props) {
   if (!cliente) {
     return (
-      <div className="h-full flex items-center justify-center ">
+      <div className="h-full flex items-center justify-center text-amber-50">
         Selecione um cliente ao lado
       </div>
     );
   }
 
   return (
-    <div className="space-y-3 animate-fadeIn">
-      <h1 className="text-2xl font-bold">
+    <div className="space-y-3 animate-fadeIn text-amber-50">
+      <h1 className="text-2xl font-bold text-amber-50">
         {cliente.nome}
       </h1>
 

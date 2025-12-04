@@ -73,16 +73,17 @@ function DeletarOportunidade() {
     }
     
     return (
-        <div className='container w-1/3 mx-auto'>
+        <div className='container w-2/3 mx-auto'>
             <h1 className='text-4xl text-center my-4'>Deletar Oportunidade</h1>
             <p className='text-center font-semibold mb-4'>
                 Você tem certeza de que deseja excluir a Oportunidade do sistema?
             </p>
-            <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
+            <div className='bg-white/20 border-e-4 border-b-4 border flex flex-col rounded-2xl overflow-hidden justify-between'>
                 <header 
-                    className='py-2 px-6 bg-indigo-600 text-white font-bold text-2xl'>
+                    className='py-2 px-6 font-bold text-2xl'>
                     Oportunidade
                 </header>
+                <hr className='border'/>
                 <div className="p-4">
                     <p className='text-xl font-semibold mb-2'>
                         {oportunidade.descricao}
@@ -100,15 +101,15 @@ function DeletarOportunidade() {
                         Tipo: {oportunidade.tipoOportunidade?.descricao || 'Não informado'}
                     </p> 
                 </div>
+                 <hr className='border'/>
                 <div className="flex">
                     <button 
-                        className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2'
+                        className='hover:bg-white/50 w-full py-2 border-e-2'
                         onClick={retornar}>
                         Não
                     </button>
                     <button 
-                        className='w-full text-slate-100 bg-indigo-400 
-                        hover:bg-indigo-600 flex items-center justify-center'
+                        className='hover:bg-white/50 w-full py-2 border-e-2r'
                         onClick={deletarOportunidade}>
                         { isLoading ? 
                             <ClipLoader 

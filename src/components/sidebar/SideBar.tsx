@@ -9,7 +9,7 @@ export default function Sidebar() {
 
   const navigate = useNavigate();
 
-	const {usuario, handleLogout } = useContext(AuthContext)
+	const {handleLogout } = useContext(AuthContext)
 
 	function logout(){
 		handleLogout()

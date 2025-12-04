@@ -6,7 +6,7 @@ export default interface Oportunidade {
     descricao: string;
     status: string;
     valorPotencial: string;
-    dataCricao: string;
+    dataCriacao: string;
     tipoOportunidade: TipoOportunidade | null;
     cliente: Cliente | null;
 }

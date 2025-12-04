@@ -49,7 +49,7 @@ function FormOportunidade() {
         descricao: '',
         status: '',
         valorPotencial: '',
-        dataCricao: '',
+        dataCriacao: '',
         tipoOportunidade: null,
         cliente: null,
     })

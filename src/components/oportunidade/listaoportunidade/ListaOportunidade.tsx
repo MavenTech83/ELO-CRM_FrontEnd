@@ -7,8 +7,11 @@ import { buscarOportunidades } from "../../../services/OportunidadeService";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
 
+interface ListaOportunidadeProps {
+  onSelect: (oportunidade: Oportunidade) => void;
+}
 
-function ListaOportunidade() {
+function ListaOportunidade({ onSelect }: ListaOportunidadeProps) {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [oportunidades, setOportunidades] = useState<Oportunidade[]>([]) 
@@ -23,25 +26,37 @@ function ListaOportunidade() {
         }
     }, [token])
 
-    useEffect(() => {
-        buscarTodasOportunidades()    
-    }, [oportunidades.length]) 
+   useEffect(() => {
+    buscarTodasOportunidades()    
+}, []) // <-- resolvido
+
 
     async function buscarTodasOportunidades() { 
-        try {
-            setIsLoading(true)
-            await buscarOportunidades(setOportunidades, { 
-                headers: { Authorization: token }
-            })
-        } catch (error: any) {
-            if (error.toString().includes('401')) {
-                handleLogout()
-            }
-        } finally {
-            setIsLoading(false)
-        }
-    }
+    try {
+        setIsLoading(true)
 
+        await buscarOportunidades((dados: any) => {
+            console.log("API em lista:", dados)
+
+            if (Array.isArray(dados)) {
+                setOportunidades(dados)
+            } 
+            else if (Array.isArray(dados.content)) {
+                setOportunidades(dados.content)
+            }
+            else {
+                setOportunidades([])
+            }
+        }, { headers: { Authorization: token } })
+
+    } catch (error: any) {
+        if (error.toString().includes('401')) {
+            handleLogout()
+        }
+    } finally {
+        setIsLoading(false)
+    }
+}
     return (
         <>
             {isLoading && (
@@ -59,11 +74,17 @@ function ListaOportunidade() {
                             Nenhuma Oportunidade foi encontrada!
                         </span>
                     )}
-                    <div className="grid grid-cols-1 md:grid-cols-2 
-                                    lg:grid-cols-3 gap-8 p-4">
+                    <div className="overflow-y-auto" >
                         {
+                            
                             oportunidades.map((oportunidade) => ( 
-                                <CardOportunidade key={oportunidade.id} oportunidade={oportunidade}/>
+                                <div 
+                                key={oportunidade.id} 
+                                onClick={() => onSelect(oportunidade)}
+                                className="cursor-pointer hover:scale-[0.98] transition-transform"
+                                >
+                                <CardOportunidade oportunidade={oportunidade}/>
+                                </div>
                             ))
                         }
                     </div>

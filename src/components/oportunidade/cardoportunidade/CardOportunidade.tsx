@@ -7,54 +7,29 @@ interface CardOportunidadeProps {
 
 function CardOportunidade({ oportunidade }: CardOportunidadeProps) {
     return (
-        <div className='border-slate-900 border 
-            flex flex-col rounded overflow-hidden justify-between'>
+        <div className='flex flex-col rounded overflow-hidden justify-between pb-2'>
                 
             <div>
-                <div className="flex w-full bg-indigo-400 py-2 px-4 items-center gap-4">
-                    <img
-                        src={oportunidade.usuario?.foto}
-                        className='h-12 rounded-full'
-                        alt={oportunidade.usuario?.nome} />
-                    <h3 className='text-lg font-bold text-center uppercase'>
-                        {oportunidade.usuario?.nome}
-                    </h3>
-                </div>
-                <div className='p-4'>
-                    <h4 className='text-lg font-semibold uppercase'>
+                <div className='bg-white/20 rounded-2xl border border-e-4 border-b-4'>
+                    <header className='p-2 '>
                         {oportunidade.descricao} 
-                    </h4>
-                    <p className='text-sm text-gray-600'>
-                        Status: {oportunidade.status}
-                    </p>
-                    <p className='text-sm text-gray-600'>
-                        Valor Potencial: {oportunidade.valorPotencial} 
-                    </p>
-                    <p className='text-sm text-gray-600'>
-                        Cliente: {oportunidade.cliente?.nome || 'Não informado'} 
-                    </p>
-                    <p className='text-sm text-gray-600'>
-                        Tipo: {oportunidade.tipoOportunidade?.descricao || 'Não informado'} 
-                    </p>
-                    <p className='text-sm text-gray-600'>
-                        Data: {new Intl.DateTimeFormat("pt-BR", {
-                            dateStyle: 'full',
-                            timeStyle: 'medium',
-                        }).format(new Date(oportunidade.dataCricao))} 
-                    </p>
+                    </header>
+                    <hr className='border'/>
+                    <div className="flex">
+                    <Link 
+                        to={`/editaroportunidade/${oportunidade.id}`} 
+                        className="w-full rounded-bl-2xl hover:bg-white/50 border-e-2 flex items-center justify-center py-2"
+                    >
+                        <button>Editar</button>
+                    </Link>
+                    <Link 
+                        to={`/deletaroportunidade/${oportunidade.id}`} 
+                        className="rounded-br-2xl hover:bg-white/50 w-full flex items-center justify-center"
+                    >
+                        <button>Deletar</button>
+                    </Link>
+                    </div> 
                 </div>
-            </div>
-            <div className="flex">
-                <Link to={`/editaroportunidade/${oportunidade.id}`} 
-                    className='w-full text-white bg-indigo-400 
-                    hover:bg-indigo-800 flex items-center justify-center py-2'>
-                    <button>Editar</button>
-                </Link>
-                <Link to={`/deletaroportunidade/${oportunidade.id}`} 
-                    className='text-white bg-red-400 
-                    hover:bg-red-700 w-full flex items-center justify-center'>
-                    <button>Deletar</button>
-                </Link>
             </div>
         </div>
     )

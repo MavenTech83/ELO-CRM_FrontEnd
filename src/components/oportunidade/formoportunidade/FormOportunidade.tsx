@@ -205,13 +205,15 @@ function FormOportunidade() {
 
 
     return (
-        <div className="container flex flex-col mx-auto items-center">
-            <h1 className="text-4xl text-center my-8">
+        <div className="container flex flex-col mx-auto items-center bg-white/20 border-e-4 border-b-4 border rounded-2xl p-3">
+            <h1 className="text-4xl text-center my-2">
                  {id !== undefined ? 'Editar Oportunidade' : 'Cadastrar Oportunidade'}
+                 
             </h1>
-
-            <form className="flex flex-col w-1/2 gap-4"
+            <hr className='border w-full'/>
+            <form className="flex flex-col w-1/2 gap-2"
                 onSubmit={gerarNovaOportunidade}>
+                    
                 <div className="flex flex-col gap-2">
                     <label htmlFor="descricao">Descrição da Oportunidade</label>
                     <input
@@ -265,7 +267,6 @@ function FormOportunidade() {
 
                     </select>
                 </div>
-
                 <div className="flex flex-col gap-2">
                     <p>Cliente</p>
                     <select name="cliente" id="cliente" 
@@ -280,7 +281,7 @@ function FormOportunidade() {
 
                     </select>
                 </div>
-
+               
                 <button 
                     type='submit' 
                     className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800

@@ -1,5 +1,6 @@
-import type TipoOportunidade from "./TipoOportunidade";
 import type Cliente from "./Cliente";
+import type { TipoOportunidade } from "./TipoOportunidade";
+
 
 export default interface Oportunidade {
     id: number;
@@ -7,6 +8,6 @@ export default interface Oportunidade {
     status: string;
     valorPotencial: string;
     dataCriacao: string;
-    tipoOportunidade: TipoOportunidade | null;
+    tipoOportunidade: TipoOportunidade | null ;
     cliente: Cliente | null;
 }

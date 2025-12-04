@@ -10,7 +10,7 @@ import { AuthProvider } from "./contexts/AuthContext"
 import { ToastContainer } from "react-toastify"
 import Editar from "./pages/oportunidades/EditarOportunidadePage"
 import Clientes from "./pages/clientes/Clientes"
-import SobreProjeto from "./pages/sobre_projeto/SobreProjeto"
+import SobreProjeto from "./pages/sobreprojeto/SobreProjeto"
 import DeletarOportunidadePage from "./pages/oportunidades/DeletarOportunidadePage"
 import EditarClientePage from "./pages/clientes/EditarClientePage"
 import DeletarClientePage from "./pages/clientes/DeletarClientePage"
@@ -35,6 +35,7 @@ function App() {
 							<Route path="/deletarcliente/:id" element={<DeletarClientePage />} />
 							<Route path="/sobrenos" element={<SobreNos />} />
 							<Route path="/sobreprojeto" element={<SobreProjeto />} />
+							
 					</Routes>
 				</BrowserRouter>
 				</AuthProvider>

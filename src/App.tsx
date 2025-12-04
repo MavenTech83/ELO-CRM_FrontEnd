@@ -6,6 +6,7 @@ import Perfil from "./pages/perfil/Perfil"
 import Clientes from "./pages/clientes/Clientes"
 import SobreNos from "./pages/sobrenos/SobreNos"
 import Home from "./pages/home/Home"
+import SobreProjeto from "./pages/sobre_projeto/SobreProjeto"
 
 function App() {
 	return (

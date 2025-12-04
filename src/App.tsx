@@ -11,10 +11,11 @@ import { ToastContainer } from "react-toastify"
 import Editar from "./pages/oportunidades/EditarOportunidadePage"
 import Clientes from "./pages/clientes/Clientes"
 import SobreProjeto from "./pages/sobre_projeto/SobreProjeto"
-import SobreNos from "./pages/sobrenos/SobreNos"
 import DeletarOportunidadePage from "./pages/oportunidades/DeletarOportunidadePage"
 import EditarClientePage from "./pages/clientes/EditarClientePage"
 import DeletarClientePage from "./pages/clientes/DeletarClientePage"
+import SobreNos from "./pages/sobrenos/SobreNos"
+
 
 function App() {
 	return (

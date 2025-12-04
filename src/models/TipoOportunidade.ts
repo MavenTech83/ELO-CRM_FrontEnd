@@ -1,4 +1,5 @@
-export default interface TipoOportunidade {
+export interface TipoOportunidade {
     id: number;
     descricao: string;
-}
+  }
+  

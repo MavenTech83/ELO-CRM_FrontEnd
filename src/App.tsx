@@ -9,8 +9,6 @@ import Home from "./pages/home/Home"
 import { AuthProvider } from "./contexts/AuthContext"
 import { ToastContainer } from "react-toastify"
 import Editar from "./pages/oportunidades/EditarOportunidadePage"
-
-import Home_leticia from "./pages/home/Home_leticia"
 import Clientes from "./pages/clientes/Clientes"
 import SobreProjeto from "./pages/sobre_projeto/SobreProjeto"
 import SobreNos from "./pages/sobrenos/SobreNos"
@@ -27,7 +25,6 @@ function App() {
 					<Routes>
 							<Route path="/" element={<Login />} />
 							<Route path="/home" element={< Home />} />
-							<Route path="/home-le" element={< Home_leticia />} />
 							<Route path="/oportunidades" element={< Oportunidades />} />
 							<Route path="/editaroportunidade/:id" element={<Editar />} />
 							<Route path="/deletaroportunidade/:id" element={<DeletarOportunidadePage />} />

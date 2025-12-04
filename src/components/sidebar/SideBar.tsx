@@ -1,9 +1,23 @@
-import { HandshakeIcon, HeartIcon, HouseIcon, ListIcon, SignOutIcon, UserIcon, UsersFourIcon } from "@phosphor-icons/react";
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { HandshakeIcon, HeartIcon,HouseIcon, ListIcon, SignOutIcon, UserIcon, UsersFourIcon } from "@phosphor-icons/react";
+import { useContext, useState } from "react";
+import { Link, useNavigate, NavLink } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import { ToastAlerta } from "../../utils/ToastAlerta";
+
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
+
+  const navigate = useNavigate();
+
+	const {handleLogout } = useContext(AuthContext)
+
+	function logout(){
+		handleLogout()
+		ToastAlerta('O Usuário foi desconectado com sucesso!', 'info')
+		navigate('/')
+	}
+
 
   return (
     <div className={`h-screen rounded-3xl bg-(--color-picton-blue-950) text-white flex flex-col p-4 transition-all duration-300 

@@ -1,4 +1,4 @@
-import type Postagem from "./Oportunidade";
+import type Oportunidade from "./Oportunidade";
 
 export default interface Usuario{
     id: number;

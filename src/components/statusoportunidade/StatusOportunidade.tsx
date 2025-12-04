@@ -98,7 +98,7 @@ export default function AtualizacaoStatusSelect({
   value={status}
   onChange={handleSelectChange}
   disabled={readOnly || loading}
-  className="w-full border h-10 border-slate-700 rounded p-2 text-base text-slate-900"
+  className="w-full border h-10 border-amber-50 rounded p-2 text-base  text-amber-50"
 >
         {STATUS_OPTIONS.map((opt) => (
           <option key={opt.key} value={opt.key}>
@@ -122,7 +122,7 @@ export default function AtualizacaoStatusSelect({
           />
 
           {/* Caixa do modal */}
-          <div className="relative bg-white w-full max-w-md p-6 rounded-lg shadow-lg">
+          <div className="relative bg-(--color-picton-blue-900) w-full max-w-md p-6 rounded-lg shadow-lg">
             
             <h3 className="text-lg font-semibold mb-2">Confirmar alteração</h3>
 

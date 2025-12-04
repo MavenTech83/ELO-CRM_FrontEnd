@@ -18,7 +18,7 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
   const dataValida = isNaN(data.getTime()) ? null : data;
 
   return (
-    <div className="space-y-3 animate-fadeIn  ">
+    <div className="space-y-3 animate-fadeIn   text-amber-50  ">
       <h1 className="text-2xl font-bold  text-amber-50 (--color-picton-blue-200)">
         {oportunidade.descricao}
       </h1>

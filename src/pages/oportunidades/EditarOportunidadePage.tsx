@@ -1,7 +1,7 @@
 import Layout from '../../components/layout/Layout'
 import FormOportunidade from '../../components/oportunidade/formoportunidade/FormOportunidade'
 
-function Editar() {
+function EditarOportunidadePage() {
   return (
     <Layout>
         <FormOportunidade />
@@ -9,4 +9,4 @@ function Editar() {
   )
 }
 
-export default Editar
+export default EditarOportunidadePage

@@ -5,6 +5,7 @@ import DetalhesOportunidade from "../../components/oportunidade/detalhesoportuni
 import type Oportunidade from "../../models/Oportunidade";
 
 
+
 function Oportunidades() {
   const [selectedCard, setSelectedCard] = useState<Oportunidade | null>(null);
 

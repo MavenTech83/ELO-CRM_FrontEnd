@@ -1,6 +1,6 @@
-import { HandshakeIcon, HeartIcon,HouseIcon, ListIcon, SignOutIcon, UserIcon, UsersFourIcon } from "@phosphor-icons/react";
+import { CoffeeIcon, HandshakeIcon, HeartIcon,HouseIcon, ListIcon, ProjectorScreenIcon, SignOutIcon, UserIcon, UsersFourIcon } from "@phosphor-icons/react";
 import { useContext, useState } from "react";
-import { Link, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 
@@ -65,11 +65,21 @@ export default function Sidebar() {
           )}
         </NavLink>
 
-        <NavLink to="/">
+        <NavLink to="/sobreprojeto">
           {({ isActive }) => (
-            <SidebarItem icon={<SignOutIcon size={32} />} label="Sair" isOpen={isOpen} active={isActive} />
+            <SidebarItem icon={<CoffeeIcon size={32} />} label="Sobre Projeto" isOpen={isOpen} active={isActive} />
           )}
         </NavLink>
+
+        {/* Botão de logout */}
+        <button onClick={logout}>
+          <SidebarItem
+            icon={<SignOutIcon size={32} />}
+            label="Sair"
+            isOpen={isOpen}
+            active={false}
+          />
+        </button>
 
       </nav>
     </div>

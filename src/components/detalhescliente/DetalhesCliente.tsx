@@ -23,7 +23,7 @@ export default function DetalhesCliente({ cliente }: Props) {
       <p><b>Endereço:</b> {cliente.endereco || "Não informado"}</p>
       <p><b>Telefone:</b> {cliente.telefone || "Não informado"}</p>
       <p><b>Oportunidade:</b> {cliente.oportunidade?.descricao || "Não informado"}</p>
-      <p><b>Tipo Oportunidade:</b> {cliente.oportunidade?.tipoOportunidade || "Não informado"}</p>
+      <p><b>Tipo Oportunidade:</b> {cliente.oportunidade?.tipoOportunidade.descricao || "Não informado"}</p>
 
       
     </div>

@@ -4,14 +4,14 @@ import Layout from "../../components/layout/Layout";
 function SobreProjeto() {
 return (
     <Layout>
-        <div className="h-full w-full flex items-center justify-center overflow-hidden p-2">
+        <div className="h-full w-full flex items-center justify-center overflow-hidden p-2 text-(--color-picton-blue-900)">
             {/* Container que escala automaticamente para caber */}
             <div className="w-full h-full flex flex-col justify-between items-center 
                             max-h-full max-w-full overflow-hidden scale-[0.90] md:scale-100">
                                 
                 {/* Título */}
-                <div className="text-center">
-                    <FaRocket className="text-2xl text-(--color-picton-blue-900)  mx-auto" />
+                <div className="text-center text-white">
+                    <FaRocket className="text-2xl text-white  mx-auto" />
                     <h1 className="text-2xl font-bold mb-2">
                         ELO CRM
                     </h1>

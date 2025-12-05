@@ -71,7 +71,7 @@ function Home() {
 										<Popup
 											trigger={
 												<button
-													className="bg-(--color-picton-blue-950) hover:bg-(--color-picton-blue-800) text-white px-8 py-6 rounded-2xl text-xl font-semibold shadow-md h-full w-full flex flex-col items-center justify-center gap-1"
+													className="bg-(--color-picton-blue-950) hover:bg-(--color-picton-blue-800) hover:border-2 hover:border-(--color-picton-blue-950)  text-white px-8 py-6 rounded-2xl text-xl font-semibold shadow-md flex flex-col items-center justify-center gap-1"
 												>
 													<span>Cadastrar Novo</span>
 													<span className="text-2xl">Cliente</span>

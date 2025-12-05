@@ -9,7 +9,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
 	return (
 		<>
-			<div className="h-screen w-full flex flex-col items-center pt-[5vh] bg-(--color-picton-blue-100)">
+			<div className="h-screen w-full flex flex-col items-center pt-[5vh] bg-(--color-picton-blue-100) text-amber-50">
 				{/* footer dentro da tela expansivel*/}
 				{/* DIV PRINCIPAL “FLUTUANDO”
 	<div className="w-[80vw] sm:h-screen md:h-[90vh] sm:mt-0

@@ -3,6 +3,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 // import './ModalCliente.css'
 import FormCliente from '../formcliente/FormCliente';
+import { UserPlusIcon } from '@phosphor-icons/react';
 
 interface ModalClienteProps {
     onClienteAdded?: () => void;
@@ -58,12 +59,11 @@ function ModalCliente({
                     triggerButton ? (
                         <button
                             // className="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg shadow transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                            className='border rounded px-4 py-2 hover:bg-white hover:text-indigo-800'
+                            className='rounded disabled:bg-slate-200 border bg-white/20 hover:bg-cyan-500
+                               text-white font-bold w-2/3 mx-auto py-2 flex justify-center items-center gap-4'
                             onClick={handleOpenModal}
                         >
-                            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
+                            <UserPlusIcon size={32} />
                             {smallTriggerText}
                         </button>
                     ) : undefined
@@ -85,25 +85,10 @@ function ModalCliente({
                     overflow: 'visible',
                 }}
             >
-                <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full mx-auto my-8 overflow-hidden">
+                <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full mx-auto overflow-hidden">
                     {/* Cabeçalho */}
-                    <div className="from-[#167cf1] to-[#005de3] px-6 py-4 flex items-center justify-between">
+                    {/* <div className="from-[#167cf1] to-[#005de3] px-6 py-4 flex items-center justify-between">
                         <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                                <svg
-                                    className="w-5 h-5 text-white"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                    />
-                                </svg>
-                                </div>
                             <div>
                                 <h2 className="text-xl font-semibold text-white">Novo Cliente</h2>
                                 <p className="text-indigo-100 text-sm">
@@ -129,10 +114,10 @@ function ModalCliente({
                                 />
                             </svg>
                         </button>
-                    </div>
+                    </div> */}
 
                     {/* Conteúdo */}
-                    <div className="max-h-[70vh] overflow-y-auto p-6">
+                    <div className="max-h-[90vh] overflow-y-auto p-6">
                         <FormCliente onSuccess={handleClienteAdded} onCancel={handleCancel} isModal={true} />
                     </div>
                 </div>

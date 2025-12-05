@@ -82,7 +82,7 @@ function DeletarOportunidade() {
   }
 
   return (
-    <div className="container w-2/3 mx-auto">
+    <div className="container w-5/6 mx-auto p-20">
       <h1 className="text-4xl text-center my-4">Deletar Oportunidade</h1>
 
       <p className="text-center font-semibold mb-4">
@@ -95,21 +95,21 @@ function DeletarOportunidade() {
         <hr className="border" />
 
         <div className="p-4">
-          <p className="text-xl font-semibold mb-2">{oportunidade.descricao}</p>
+          <p className="text-2xl font-semibold mb-2">{oportunidade.descricao}</p>
 
-          <p className="text-sm text-gray-600">
+          <p className="text-xl">
             Status: {statusLocal || "Não informado"}
           </p>
 
-          <p className="text-sm text-gray-600">
+          <p className="text-xl">
             Valor Potencial: {oportunidade.valorPotencial || "Não informado"}
           </p>
 
-          <p className="text-sm text-gray-600">
+          <p className="text-xl">
             Cliente: {oportunidade.cliente?.nome || "Não informado"}
           </p>
 
-          <p className="text-sm text-gray-600">
+          <p className="text-xl">
             Tipo: {oportunidade.tipoOportunidade?.descricao || "Não informado"}
           </p>
         </div>

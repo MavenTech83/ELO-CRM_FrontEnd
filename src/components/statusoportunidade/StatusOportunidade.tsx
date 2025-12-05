@@ -98,7 +98,7 @@ export default function AtualizacaoStatusSelect({
   value={status}
   onChange={handleSelectChange}
   disabled={readOnly || loading}
-  className="w-full border h-10 border-amber-50 rounded p-2 text-base  text-amber-50"
+  className="border p-2 border-slate-800 rounded text-slate-800 "
 >
         {STATUS_OPTIONS.map((opt) => (
           <option key={opt.key} value={opt.key}>
@@ -117,12 +117,12 @@ export default function AtualizacaoStatusSelect({
           
           {/* Fundo escuro */}
           <div
-            className="absolute inset-0 bg-black/30"
+            className="absolute inset-0 bg-slate/500"
             onClick={cancelChange} // fecha ao clicar fora
           />
 
           {/* Caixa do modal */}
-          <div className="relative bg-(--color-picton-blue-900) w-full max-w-md p-6 rounded-lg shadow-lg">
+          <div className="relative bg-white text-black w-full max-w-md p-6 rounded-lg shadow-lg">
             
             <h3 className="text-lg font-semibold mb-2">Confirmar alteração</h3>
 
@@ -147,13 +147,13 @@ export default function AtualizacaoStatusSelect({
             <div className="flex justify-end gap-2"> 
               <button
                 onClick={cancelChange} // cancela troca
-                className="px-4 py-2 rounded-md border"
+                className="px-4 py-2 rounded-md border bg-red-500/20 hover:bg-red-500"
               >
                 Cancelar
               </button>
               <button
                 onClick={confirmChange} // confirma troca
-                className="px-4 py-2 rounded-md bg-cyan-600 text-white"
+                className="px-4 py-2 rounded-md border bg-cyan-500/20 hover:bg-cyan-500"
                 disabled={loading} // desabilita durante loading
               >
                 Confirmar

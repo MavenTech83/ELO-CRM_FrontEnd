@@ -59,7 +59,7 @@ function CardClientes({ cliente }: CardClientesProps) {
                     <div className="flex">
                         <Link 
                             to={`/editarcliente/${cliente.id}`} 
-                            className="w-full rounded-bl-2xl hover:bg-white/50 border-e-2 flex items-center justify-center py-2"
+                            className="w-full rounded-bl-2xl  hover:bg-white/50 border-e-2 flex items-center justify-center py-2"
                         >
                             <button>Editar</button>
                         </Link>

@@ -230,14 +230,16 @@ export default function FormOportunidade() {
         });
         console.log("Resposta update:", res);
         ToastAlerta("Oportunidade atualizada com sucesso", "sucesso");
+        navigate('/oportunidades');
       } else {
         const res = await cadastrarOportunidadeService(payload, setOportunidade, {
           headers: { Authorization: token }
         });
         console.log("Resposta create:", res);
         ToastAlerta("Oportunidade cadastrada com sucesso", "sucesso");
+        navigate('/oportunidades');
       }
-      retornar();
+      
     } catch (error: any) {
       console.error("Erro axios (detalhe):", error);
       if (error.response) {
@@ -258,13 +260,13 @@ export default function FormOportunidade() {
 
   // ------------------- render -------------------
   return (
-    <div className="container flex flex-col mx-auto items-center">
+    <div className="container flex flex-col mx-auto items-center border rounded-2xl border-e-4 border-b-4">
       <h1 className="text-4xl text-center my-8">
         {id !== undefined ? "Editar Oportunidade" : "Cadastrar Oportunidade"}
       </h1>
-
-      <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovaOportunidade}>
-        <div className="flex flex-col gap-2">
+       <hr className="text-black w-full p-5"/>
+      <form className="flex flex-col w-full gap-4 items-center" onSubmit={gerarNovaOportunidade}>
+        <div className="flex flex-col gap-2 w-1/2">
           <label htmlFor="descricao">Descrição da Oportunidade</label>
           <input
             type="text"
@@ -277,9 +279,9 @@ export default function FormOportunidade() {
           />
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-1/2">
           <label>Status</label>
-          <div className="mt-1">
+          <div className="border border-slate-800 rounded">
             <AtualizacaoStatusSelect
               oportunidadeId={oportunidade.id || 0}
               currentStatus={(oportunidade.status as any) || "Aberta"}
@@ -288,7 +290,7 @@ export default function FormOportunidade() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-1/2">
           <label htmlFor="valorPotencial">Valor Potencial</label>
           <input
             type="text"
@@ -301,12 +303,12 @@ export default function FormOportunidade() {
           />
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-1/2">
           <p>Tipo de Oportunidade</p>
           <select
             name="tipoOportunidade"
             id="tipoOportunidade"
-            className="border p-2 border-slate-800 rounded"
+            className="border p-2 border-slate-800 rounded text-slate-800"
             value={tipoOportunidade.id || ""}
             onChange={e => {
               const idSel = Number(e.currentTarget.value);
@@ -326,12 +328,12 @@ export default function FormOportunidade() {
           </select>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-1/2">
           <p>Cliente</p>
           <select
             name="cliente"
             id="cliente"
-            className="border p-2 border-slate-800 rounded"
+            className="border p-2 border-slate-800 rounded text-slate-800"
             value={cliente.id || ""}
             onChange={e => buscarClientePorId(e.currentTarget.value)}
           >
@@ -345,14 +347,18 @@ export default function FormOportunidade() {
             ))}
           </select>
         </div>
-
+        <hr className="w-full p-2"/>
+        <div className="flex pb-6 gap-10">
         <button
           type="submit"
-          className="rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto py-2 flex justify-center"
+          className="rounded disabled:bg-slate-200 disabled:text-black/20 border bg-cyan-500/20 hover:bg-cyan-500
+                               font-bold py-2 px-4 justify-center"
           disabled={carregandoDados || isLoading}
         >
-          {isLoading ? <ClipLoader color="#ffffff" size={24} /> : <span>{id === undefined ? "Cadastrar" : "Atualizar"}</span>}
+          {isLoading ? <ClipLoader color="#0b5c81" size={24} /> : <span>{id === undefined ? "Cadastrar" : "Atualizar"}</span>}
         </button>
+        
+        </div>
       </form>
     </div>
   );

@@ -136,6 +136,7 @@ function FormCliente({
                     headers: { Authorization: token }
                 })
                 ToastAlerta("O Cliente foi cadastrado com sucesso!", 'sucesso')
+                
 
                 setTimeout(() => {
                     setIsLoading(false);
@@ -173,7 +174,8 @@ function FormCliente({
         : "bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden max-w-md mx-auto my-8";
 
     const headerComponent = !isModal ? (
-        <div className="bg-gradient-to-b from-[#167cf1] to-[#005de3] px-8 py-6">
+        <div>
+        {/* // <div className="bg-gradient-to-b from-[#167cf1] to-[#005de3] px-8 py-6"> */}
             <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,76 +200,77 @@ function FormCliente({
 
 
     return (
-        <div className="container flex flex-col mx-auto items-center">
-            <h1 className="text-4xl text-center my-8">
+        <div className="container flex flex-col  items-center border rounded-2xl border-e-4 border-b-4 ">
+            <h1 className="text-4xl text-center">
                 {isEdicao ? "Editar Cliente" : "Cadastrar Cliente"}
             </h1>
-    
-            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoCliente}>
+            <hr className="text-black w-full p-5"/>
+            <form className="flex flex-col w-full gap-4 items-center" onSubmit={gerarNovoCliente}>
     
                 {/* NOME */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/2">
                     <label htmlFor="nome">Nome do Cliente</label>
                     <input
                         type="text"
                         placeholder="Nome completo"
                         name="nome"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={cliente.nome || ""}
                         onChange={atualizarEstado}
                     />
                 </div>
     
                 {/* EMAIL */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/2">
                     <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         placeholder="cliente@email.com"
                         name="email"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={cliente.email || ""}
                         onChange={atualizarEstado}
                     />
                 </div>
     
                 {/* TELEFONE */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/2">
                     <label htmlFor="telefone">Telefone</label>
                     <input
                         type="text"
                         placeholder="(00) 00000-0000"
                         name="telefone"
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={cliente.telefone || ""}
                         onChange={atualizarEstado}
                     />
                 </div>
     
                 {/* ENDEREÇO */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-1/2 pb-10">
                     <label htmlFor="endereco">Endereço</label>
                     <input
                         type="text"
                         placeholder="Rua, número, bairro..."
                         name="endereco"
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={cliente.endereco || ""}
                         onChange={atualizarEstado}
                     />
                 </div>
-    
+                <hr className="w-full p-2"/>
                 {/* BOTÕES */}
-                <button
+                <div className="flex pb-6 gap-10">
+                    <button
                     type="submit"
-                    className="rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800
-                               text-white font-bold w-1/2 mx-auto py-2 flex justify-center"
+                    className="rounded disabled:bg-slate-200 border bg-cyan-500/20 hover:bg-cyan-500
+                               font-bold py-2 px-4 justify-center"
                     disabled={isLoading}
                 >
                     {isLoading ? (
-                        <ClipLoader color="#ffffff" size={24} />
+                        <ClipLoader color="#0b5c81" size={24} />
                     ) : (
                         <span>{isEdicao ? "Atualizar" : "Cadastrar"}</span>
                     )}
@@ -277,12 +280,14 @@ function FormCliente({
                     <button
                         type="button"
                         onClick={onCancel}
-                        className="rounded bg-slate-300 hover:bg-slate-400
-                                   text-black font-bold w-1/2 mx-auto py-2 flex justify-center"
+                        className="rounded border bg-red-500/20 hover:bg-red-500
+                                   text-black font-bold mx-auto py-2 px-4 justify-center"
                     >
                         Cancelar
                     </button>
                 )}
+                </div>
+                
             </form>
         </div>
     );

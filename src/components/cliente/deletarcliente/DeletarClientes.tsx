@@ -71,7 +71,7 @@ function DeletarCliente() {
     }
 
     return (
-        <div className='container w-2/3 mx-auto'>
+        <div className='container w-5/6 mx-auto p-20'>
             <h1 className='text-4xl text-center my-4'>Deletar Cliente</h1>
             <p className='text-center font-semibold mb-4'>
                 Você tem certeza de que deseja excluir o Cliente do sistema?
@@ -86,16 +86,16 @@ function DeletarCliente() {
                 <hr className='border' />
 
                 <div className="p-4">
-                    <p className='text-xl font-semibold mb-2'>
+                    <p className='text-2xl font-semibold mb-2'>
                         {cliente.nome || 'Nome não informado'}
                     </p>
-                    <p className='text-sm text-gray-600'>
+                    <p className='text-xl'>
                         E-mail: {cliente.email || 'Não informado'}
                     </p>
-                    <p className='text-sm text-gray-600'>
+                    <p className='text-xl'>
                         Telefone: {cliente.telefone || 'Não informado'}
                     </p>
-                    <p className='text-sm text-gray-600'>
+                    <p className='text-xl'>
                         Endereço: {cliente.endereco || 'Não informado'}
                     </p>
                 </div>
@@ -115,7 +115,7 @@ function DeletarCliente() {
                     >
                         {isLoading ? 
                             <ClipLoader 
-                                color="#ffffff" 
+                                color="#0b5c81" 
                                 size={24}
                             /> : 
                             <span>Sim</span>

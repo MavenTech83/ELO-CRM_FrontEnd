@@ -15,6 +15,8 @@ import DeletarOportunidadePage from "./pages/oportunidades/DeletarOportunidadePa
 import EditarClientePage from "./pages/clientes/EditarClientePage"
 import DeletarClientePage from "./pages/clientes/DeletarClientePage"
 import SobreNos from "./pages/sobrenos/SobreNos"
+import Cadastro from "./pages/cadastro/Cadastro"
+
 
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
 							<Route path="/deletarcliente/:id" element={<DeletarClientePage />} />
 							<Route path="/sobrenos" element={<SobreNos />} />
 							<Route path="/sobreprojeto" element={<SobreProjeto />} />
+							<Route path="/cadastro" element={<Cadastro />} />
 							
 					</Routes>
 				</BrowserRouter>

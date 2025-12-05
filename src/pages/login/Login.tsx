@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect, type ChangeEvent, type FormEvent } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import type UsuarioLogin from "../../models/UsuarioLogin";
@@ -51,7 +51,7 @@ export default function Login() {
                 id="usuario"
                 name="usuario"
                 placeholder="Usuario"
-                className="border-2 border-slate-700 rounded p-2"
+                className="border-2 border-slate-400 rounded p-2"
                 value={usuarioLogin.usuario}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             /> 
@@ -62,7 +62,7 @@ export default function Login() {
                             id="senha"
                             name="senha"
                             placeholder="Senha"
-                            className="border-2 border-slate-700 rounded p-2"
+                            className="border-2 border-slate-400 rounded p-2"
                             value={usuarioLogin.senha}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
@@ -83,6 +83,14 @@ export default function Login() {
 
               }
             </button>
+            <hr className="border-slate-800 w-full" />
+
+					<p>
+						Ainda não tem uma conta?{" "}
+						<Link to="/cadastro" className="text-fuchsia-400 hover:underline">
+							Cadastre-se
+						</Link>
+					</p>
           </form>      
         </div>
       </div>

@@ -22,7 +22,7 @@ export default function Sidebar() {
   return (
     <div className={`h-screen rounded-3xl bg-(--color-picton-blue-950) text-white flex flex-col p-4 transition-all duration-300 
       ${isOpen ? "w-64" : "w-20"}`}>
-
+        <img src="https://ik.imagekit.io/lefcc/ELO%20CRM/logo_elo2223.png?updatedAt=1764871666869" className="bg-white/80 rounded-2xl" alt="" />
       {/* Botão de expandir/recolher */}
       <button
         onClick={() => setIsOpen(!isOpen)}

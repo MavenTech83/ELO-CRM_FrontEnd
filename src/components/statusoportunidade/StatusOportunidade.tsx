@@ -91,19 +91,15 @@ export default function AtualizacaoStatusSelect({
   }
 
   return (
-    <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-sm">
-      
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-        Status
-      </label>
+    <div className="flex flex-col gap-2 w-full">
 
       {/* Select principal */}
       <select
-        value={status} // valor atual
-        onChange={handleSelectChange} // evento
-        disabled={readOnly || loading} // bloqueia quando salvando
-        className="w-full border rounded-md p-2 text-sm bg-white"
-      >
+  value={status}
+  onChange={handleSelectChange}
+  disabled={readOnly || loading}
+  className="w-full border h-10 border-amber-50 rounded p-2 text-base  text-amber-50"
+>
         {STATUS_OPTIONS.map((opt) => (
           <option key={opt.key} value={opt.key}>
             {opt.label}
@@ -126,7 +122,7 @@ export default function AtualizacaoStatusSelect({
           />
 
           {/* Caixa do modal */}
-          <div className="relative bg-white w-full max-w-md p-6 rounded-lg shadow-lg">
+          <div className="relative bg-(--color-picton-blue-900) w-full max-w-md p-6 rounded-lg shadow-lg">
             
             <h3 className="text-lg font-semibold mb-2">Confirmar alteração</h3>
 

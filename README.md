@@ -1,73 +1,107 @@
-# React + TypeScript + Vite
+# 🔗 ELO CRM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Conectando Pessoas e Oportunidades**
 
-Currently, two official plugins are available:
+![Elo CRM Logo](https://ik.imagekit.io/lefcc/ELO%20CRM/elo_logo.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📖 Sobre o Projeto
 
-## React Compiler
+O **Elo CRM** é uma solução desenvolvida para otimizar e centralizar o gerenciamento de clientes e o ciclo de vendas, com foco especial em corretores e seguradoras.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucro por produto, a perda de leads por cotações expiradas e a ineficiência na rastreabilidade de dados. Com o Elo CRM, transformamos potencial em lucro, garantindo que nenhuma oportunidade seja perdida.
 
-## Expanding the ESLint configuration
+### 🚀 Diferenciais e Proposta de Valor
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **Gestão Completa de Oportunidades:** Visualize e gerencie o funil de vendas de forma intuitiva.
+* **Controle Financeiro Preciso:** Saiba exatamente a rentabilidade de cada negócio.
+* **Rastreabilidade Automática:** Histórico claro das interações e status.
+* **Segurança e Acessibilidade:** Dados protegidos e acesso facilitado.
+* **Visão de Futuro:** Preparado para integrar módulos ESG (Environmental, Social, and Governance).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tecnologias Utilizadas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+O projeto foi desenvolvido utilizando uma arquitetura moderna, separando o Backend do Frontend.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Backend (API)
+* **Linguagem:** Java 17+
+* **Framework:** Spring Boot 3
+* **Banco de Dados:** MySQL
+* **ORM:** JPA / Hibernate
+* **Segurança:** Spring Security (Token JWT)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Frontend (Interface)
+* **Linguagem:** TypeScript / JavaScript
+* **Framework:** React
+* **Estilização:** Tailwind CSS
+* **Ferramentas:** Vite, Insomnia, Figma
+* **Bibliotecas Principais:**
+  * `react-router-dom` (Rotas e Navegação)
+  * `axios` (Integração com API)
+  * `reactjs-popup` (Modais)
+  * `react-toastify` (Notificações)
+  * `react-spinners` (Feedbacks de carregamento)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 👥 O Time (Mulheres em Tech)
+
+Projeto desenvolvido por um time de especialistas em desenvolvimento Fullstack Java:
+
+* **Ana Lemos**
+* **Jéssica Tinguely**
+* **Letícia Campos**
+* **Nádia Caricatto**
+* **Thalita Lima**
+
+---
+
+## 💻 Como Executar o Frontend Localmente
+
+Para testar a aplicação, você não precisa configurar o ambiente Java/Banco de Dados. O Frontend local se conectará automaticamente à nossa API hospedada na nuvem.
+
+### Pré-requisitos
+* Node.js e NPM instalados.
+* Git.
+
+### Passo a Passo
+
+1. **Clone o repositório:**
+  ```bash
+  git clone https://github.com/MavenTech83/ELO-CRM_FrontEnd.git
+  ```
+
+2. **Acesse a pasta do projeto:**
+  ```bash
+  cd ELO-CRM_FrontEnd
+  ```
+
+3. **Instale as dependências:**
+  ```bash
+  npm install
+  ```
+
+4. **Configure a conexão com a API:** 
+
+Crie um arquivo chamado ```.env``` na raiz da pasta do frontend. Insira a URL da nossa API hospedada no Render:
+  ```bash
+  VITE_API_URL="https://elo-crm.onrender.com"
+  ```
+
+5. **Execute o projeto:**
+  ```Snippet de código
+  npm run dev
+  ```
+
+6. **Acesse no navegador:**
+O projeto estará rodando em: http://localhost:5173
+
+
+
+Nota: Como o Backend está hospedado em um serviço gratuito (Render), a primeira requisição pode levar cerca de 1 minuto para "acordar" o servidor. Se o login demorar na primeira tentativa, aguarde um instante e tente novamente.
+
+🌐 Deploy (Acesso Online)
+
+- Backend (API): [Elo CRM - BackEnd](https://elo-crm.onrender.com/)
+- Frontend (Interface): [EM BREVE - Link do Vercel]

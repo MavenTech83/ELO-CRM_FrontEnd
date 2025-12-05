@@ -1,4 +1,5 @@
 import {  GithubLogoIcon, LinkedinLogoIcon, WhatsappLogoIcon } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 function Footer() {
 
@@ -6,26 +7,30 @@ function Footer() {
 
   return (
     <>
-      <div className="bg-[#04111F] p-4 text-center border-t border-gray-700">
-        <div className="h-20 container mx-auto text-sm">
-          <p className="text-gray-400 mb-1">
-          Elo CRM | Copyright: {data}
+      <div className="w-screen bg-[#04111F] pt-4 fixed bottom-0 left-0">
+        <div className="h-10 container mx-auto flex justify-between items-center">
+          <div className="text-xl font-bold text-cyan-400 mb-5">ELO CRM</div>
+          <p className="text-gray-400 mb-5">
+            Elo CRM | Copyright: {data}
           </p>
+          <div className="flex justify-end gap-2 mb-5">
+            <Link to='https://github.com/MavenTech83'>
+                <LinkedinLogoIcon className="text-gray-400" size={28} weight="light" />
+            </Link>
+            
+            <Link to='https://github.com/MavenTech83'>
+              <GithubLogoIcon className="text-gray-400" size={28} weight="light" />
+            </Link>
 
-          
-
-          <p className="text-lg text-gray-400">
-            Acesse nossas redes sociais
-          </p>
-
-          <div className="flex justify-center gap-2 mt-2 ">
-            <LinkedinLogoIcon className="text-gray-400" size={28} weight="light" />
-            <GithubLogoIcon className="text-gray-400" size={28} weight="light" />
-            <WhatsappLogoIcon className="text-gray-400" size={28} weight="light" />
+            <Link to='https://github.com/MavenTech83'>
+              <WhatsappLogoIcon className="text-gray-400" size={28} weight="light" />
+            </Link>
+                  
+            
           </div>
-
         </div>
       </div>
+          
     </>
   )
 }

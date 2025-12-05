@@ -1,49 +1,104 @@
+import Layout from "../../components/layout/Layout"
+import { useNavigate } from "react-router-dom"
+import type Oportunidade from "../../models/Oportunidade"
+import ListaOportunidade from "../../components/oportunidade/listaoportunidade/ListaOportunidade"
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import FormOportunidade from "../../components/oportunidade/formoportunidade/FormOportunidade";
+import FormCliente from "../../components/cliente/formcliente/FormCliente";
+
 function Home() {
-  return (
-    <div 
-      className="flex justify-center" 
-      style={{
-        // 1. Define a URL da imagem de fundo
-        backgroundImage: `url(https://ik.imagekit.io/hnkqnvn7cu/Whisk_emzxyzm5cjn1iwy40czhdtyti2nxqtl2ato10sy.gif)`,
-        // 2. Garante que a imagem cubra toda a área sem distorcer
-        backgroundSize: 'cover', 
-        // 3. Centraliza a imagem no container
-        backgroundPosition: 'center', 
-        // 4. Define uma altura para a seção Home (ex: tela inteira)
-        height: '80vh', 
-        
-        // 5. Opcional: Adiciona um tom escuro sobre a imagem para melhor leitura do texto branco
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-        backgroundBlendMode: 'darken'
-      }}
-    >
-      <div className=" container grid grid-cols-2 text-white">
+	const navigate = useNavigate()
 
-        <div className="flex flex-col gap-4 items-center justify-center py-4">
-          <h2 className="text-5xl font-bold text-center">Seja Bem Vindo!</h2>
+	const handleSelectOportunidade = (oportunidade: Oportunidade) => {
+		console.log("Oportunidade selecionada:", oportunidade.id)
+	}
 
-          <p className="text-xl text-center">
-            Centralize dados, automatize renovações e construa relacionamentos duradouros com seus clientes.
-          </p>
+	return (
+		<>
+			<Layout>
+				<div className="flex-1 transition-all duration-300">
+					<div className="flex flex-col">
 
-          <div className="flex justify-around gap-4">
-            <div className="rounded border-2 py-3 px-8 
-                    border-cyan-400 text-cyan-400 font-semibold 
-                    hover:bg-cyan-400 hover:text-gray-900 transition duration-300 cursor-pointer">
-              Nova Oportunidade
-            </div>
-          </div>
-        </div>
-        
-        {/* A coluna da imagem foi removida, pois a imagem agora é o background */}
-        {/* ou pode ser mantida vazia para manter o layout de 2 colunas: */}
-        <div className="hidden md:block">
-          {/* Esta coluna pode ser deixada vazia ou usada para outro conteúdo */}
-        </div>
+						{/* SEÇÃO SUPERIOR ... (mantém igual) */}
+						<div className="grid grid-cols-2 gap-2 w-full">
+						
+						
+							
+						</div>
 
-      </div>
-    </div>
-  )
+						{/* SEÇÃO INFERIOR */}
+						<div className="pt-1">
+							<section className="bg-white/20 h-[60vh] rounded-4xl p-3">
+								<div className="grid grid-cols-[3fr_1fr] gap-4 h-full">
+
+									<div className="bg-(--color-picton-blue-800) rounded-3xl p-4 flex flex-col h-full w-full gap-1 overflow-hidden">
+										<div className="flex items-center justify-between mb-4 flex-none">
+											<h2 className="text-3xl font-bold text-(--color-picton-blue-950)  text-amber-50 (--color-picton-blue-200)">
+												Oportunidades
+											</h2>
+
+
+											<Popup
+												trigger={
+													<button className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-2xl text-base font-semibold shadow-md">
+														Cadastrar Nova oportunidade
+													</button>
+												}
+												modal
+												nested
+												contentStyle={{
+													borderRadius: '1rem',
+													width: 'auto',     // Ajusta largura automática
+													maxWidth: '800px'  // Limite máximo para não estourar
+												}}
+											>
+
+												<div>
+													<FormOportunidade />
+												</div>
+											</Popup>
+
+										</div>
+
+										<div className="flex-1 overflow-y-auto min-h-0 space-y-2 pr-2">
+											<ListaOportunidade onSelect={handleSelectOportunidade} />
+										</div>
+									</div>
+
+									<div className="flex items-center justify-center h-full overflow-hidden">
+
+										<Popup
+											trigger={
+												<button
+													className="bg-(--color-picton-blue-950) hover:bg-(--color-picton-blue-800) hover:border-2 hover:border-(--color-picton-blue-950)  text-white px-8 py-6 rounded-2xl text-xl font-semibold shadow-md flex flex-col items-center justify-center gap-1"
+												>
+													<span>Cadastrar Novo</span>
+													<span className="text-2xl">Cliente</span>
+												</button>
+											}
+											modal
+											nested
+											contentStyle={{
+												borderRadius: '1rem',
+												width: 'auto',
+												maxWidth: '800px'
+											}}
+										>
+											{/* O COMPONENTE DO FORMULÁRIO ENTRA AQUI */}
+											<div>
+												<FormCliente />
+											</div>
+										</Popup>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</Layout>
+		</>
+	)
 }
 
 export default Home

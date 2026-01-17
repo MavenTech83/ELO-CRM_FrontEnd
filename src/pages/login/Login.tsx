@@ -34,16 +34,21 @@ export default function Login() {
   return (
     <div
       className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('https://ik.imagekit.io/hnkqnvn7cu/Whisk_emzxyzm5cjn1iwy40czhdtyti2nxqtl2ato10sy.gif')" }}
+      // style={{ backgroundImage: "url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHMxeWllcHh4cnlhcWV4dGg3M3docDc4c2xvd21nbGF4ZjlmdHp1dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jaOXKCxtBPLieRLI0c/giphy.gif')" }}
+      style={{ backgroundImage: "url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW1iN2FqN2ZweXF0djduN2s1djlydXM0OW9xeXZtdmE3dXNlc2c1biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7b8jdNUoFBdcoILjjv/giphy.gif')" }}
     >
-      {/* Overlay opcional */}
+   
+    {/* Overlay opcional */}
       <div className="absolute inset-0 bg-black/40"></div>
 
       {/* Conteúdo */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="bg-white/10 backdrop-blur-xl p-10 rounded-2xl w-80 text-white">
           
-              <h1 className="text-3xl font-bold text-cyan-400 text-center pb-[5vh]">ELO CRM</h1>
+              {/* <h1 className="text-3xl font-bold text-cyan-400 text-center pb-[5vh]">ELO CRM</h1> */}
+              <h1 className="text-3xl font-bold text-cyan-400 text-center pb-[5vh]">
+                <img src="https://ik.imagekit.io/lefcc/ELO%20CRM/logo_elo2223.png?updatedAt=1764871666869" className="bg-white/80 rounded-2xl" alt="" />
+              </h1>
 
           <form onSubmit={login} className="flex flex-col space-y-4">
             <input

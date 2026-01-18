@@ -82,7 +82,7 @@ export default function Cadastro() {
 		<>
 			<div
       className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('https://ik.imagekit.io/hnkqnvn7cu/Whisk_emzxyzm5cjn1iwy40czhdtyti2nxqtl2ato10sy.gif')" }}
+      style={{ backgroundImage: "url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW1iN2FqN2ZweXF0djduN2s1djlydXM0OW9xeXZtdmE3dXNlc2c1biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7b8jdNUoFBdcoILjjv/giphy.gif')" }}
     >
       {/* Overlay opcional */}
       <div className="absolute inset-0 bg-black/40"></div>
@@ -91,13 +91,17 @@ export default function Cadastro() {
       <div className="relative z-10 flex items-center justify-center h-full">
 			<div className="bg-white/10 backdrop-blur-xl p-10 rounded-2xl w-120 text-white">
 			
-				<h1 className="text-3xl font-bold text-cyan-400 text-center pb-[5vh]">ELO CRM</h1>
+				{/* <h1 className="text-3xl font-bold text-cyan-400 text-center"> */}
 				
+					<img src="https://ik.imagekit.io/lefcc/ELO%20CRM/logo_elo2223.png?updatedAt=1764871666869" className="bg-white rounded-2xl w-2/3 mx-auto" alt="" />
+				
+				
+				{/* </h1> */}
 		
 				<form className="flex flex-col space-y-4"
 					onSubmit={cadastrarNovoUsuario}
 				>
-					<h2 className="text-slate-900 text-3xl">Cadastrar</h2>
+					<h2 className="text-white text-lg mt-2 mx-auto">Crie uma nova conta</h2>
 					<div className="flex flex-col w-full">
 						<label htmlFor="nome">Nome</label>
 						<input

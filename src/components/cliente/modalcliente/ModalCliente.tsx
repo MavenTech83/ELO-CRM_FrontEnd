@@ -59,7 +59,7 @@ function ModalCliente({
                     triggerButton ? (
                         <button
                             // className="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg shadow transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                            className='rounded disabled:bg-slate-200 border bg-white/20 hover:bg-cyan-500
+                            className='rounded-lg disabled:bg-slate-200 border bg-emerald-600 hover:bg-emerald-500
                                text-white font-bold w-2/3 mx-auto py-2 flex justify-center items-center gap-4'
                             onClick={handleOpenModal}
                         >

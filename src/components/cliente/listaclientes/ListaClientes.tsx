@@ -4,7 +4,6 @@ import { useContext, useEffect, useState, useCallback } from "react";
 
 import type Cliente from "../../../models/Cliente";
 import { buscar } from "../../../services/Service";
-// import { DNA } from "react-loader-spinner";
 import { ToastAlerta } from "../../../utils/ToastAlerta"
 import { AuthContext } from "../../../contexts/AuthContext";
 import { SyncLoader } from "react-spinners";

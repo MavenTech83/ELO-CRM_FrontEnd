@@ -53,12 +53,12 @@ export default function Login() {
 
           <form onSubmit={login} className="flex flex-col space-y-4">
              <div className="flex flex-col w-full">
-                <label htmlFor="usuario">Login</label>
+                <label htmlFor="usuario">E-mail</label>
                 <input
                     type="text"
                     id="usuario"
                     name="usuario"
-                    placeholder="Usuario"
+                    placeholder="E-mail"
                     className="border-2 border-slate-400 rounded p-2"
                     value={usuarioLogin.usuario}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}

@@ -51,53 +51,52 @@ function SobreNos() {
      <Layout>
           <div className="h-full w-full flex flex-col overflow-hidden text-(--color-picton-blue-900)">
                <div className="flex flex-col items-center justify-center gap-4 ">
-                         <div className="w-full rounded-2xl text-center mb-2 mt-2 text-(--color-picton-blue-950) bg-white/90">
-                              <h2 className='text-4xl font-bold mb-4 '>
-                                   Sobre Nós
-                              </h2>
-                              <p className='text-2xl font-semibold'>
-                                   Conheça as Devas que idealizaram o Elo CRM!
-                              </p>
-                         </div> 
-
-                    </div>
-                    <div className="h-full grid grid-cols-5 rounded-2xl text-center mb-2 mt-2 text-(--color-picton-blue-950)">
-                         {desenvolvedoras.map((dev) => (
-                         <div className="h-full w-full justify-between p-2 items-start (--color-picton-blue-200)" key={dev.id}>
-                                   <div className="bg-white/90 h-full backdrop-blur-sm rounded-lg p-2 flex flex-col items-center justify-center gap-6 hover:bg-(--color-picton-blue-200) transition">
-                                   <img
-                                        src={dev.foto}
-                                        
-                                        alt={`Foto de ${dev.nome}`}
-                                        className="w-32 h-32 rounded-full object-cover border-4 border-(--color-picton-blue-800)"
-                                   />
-                                   <div className="text-center h-13">
-                                        <h3 className="text-2xl font-bold ">{dev.nome}</h3>
-                                   </div> 
+                    <div className="w-full rounded-2xl text-center mb-2 mt-2 text-(--color-picton-blue-950) bg-white/90">
+                         <h2 className='text-4xl font-bold mb-4 '>
+                              Sobre Nós
+                         </h2>
+                         <p className='text-2xl font-semibold'>
+                              Conheça as Devas que idealizaram o Elo CRM!
+                         </p>
+                    </div> 
+               </div>
+               <div className="h-full grid grid-cols-5 rounded-2xl text-center mb-2 mt-2 text-(--color-picton-blue-950)">
+                    {desenvolvedoras.map((dev) => (
+                    <div className="h-full w-full justify-between p-2 items-start (--color-picton-blue-200)" key={dev.id}>
+                              <div className="bg-white/50 h-full backdrop-blur-sm rounded-lg p-2 flex flex-col items-center justify-center gap-6 hover:bg-(--color-picton-blue-200) transition">
+                              <img
+                                   src={dev.foto}
                                    
-                                   {/* <p className="text-center text-sm">{dev.descricao}</p> */}
+                                   alt={`Foto de ${dev.nome}`}
+                                   className="w-32 h-32 rounded-full object-cover border-4 border-(--color-picton-blue-800)"
+                              />
+                              <div className="text-center h-13">
+                                   <h3 className="text-2xl font-bold ">{dev.nome}</h3>
+                              </div> 
+                              
+                              {/* <p className="text-center text-sm">{dev.descricao}</p> */}
 
-                                   {/* Links */}
-                                   <div className="flex gap-4 mt-2 items-baseline">
-                                        <a
-                                             href={dev.linkedin}
-                                             target="_blank"
-                                             rel="noopener noreferrer"
-                                             className="bg-(--color-picton-blue-900) text-(--color-picton-blue-50) px-4 py-2 rounded-lg font-semibold hover:bg-(--color-picton-blue-700) transition"
-                                        >
-                                             <LinkedinLogoIcon size={32} />
-                                        </a>
-                                        <a
-                                             href={dev.github}
-                                             target="_blank"
-                                             rel="noopener noreferrer"
-                                             className="bg-(--color-picton-blue-900) text-(--color-picton-blue-50) px-4 py-2 rounded-lg font-semibold hover:bg-(--color-picton-blue-700) transition"
-                                        >
-                                             <GithubLogoIcon size={32} />
-                                        </a>
-                                   </div>
+                              {/* Links */}
+                              <div className="flex gap-4 mt-2 items-baseline">
+                                   <a
+                                        href={dev.linkedin}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-(--color-picton-blue-900) text-(--color-picton-blue-50) px-4 py-2 rounded-lg font-semibold hover:bg-(--color-picton-blue-700) transition"
+                                   >
+                                        <LinkedinLogoIcon size={32} />
+                                   </a>
+                                   <a
+                                        href={dev.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-(--color-picton-blue-900) text-(--color-picton-blue-50) px-4 py-2 rounded-lg font-semibold hover:bg-(--color-picton-blue-700) transition"
+                                   >
+                                        <GithubLogoIcon size={32} />
+                                   </a>
                               </div>
                          </div>
+                    </div>
                          ))}
                     </div>
           </div>

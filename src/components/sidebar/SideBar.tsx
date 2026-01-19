@@ -58,11 +58,11 @@ export default function Sidebar() {
           )}
         </NavLink>
 
-        <NavLink to="/oportunidades">
+        {/* <NavLink to="/oportunidades">
           {({ isActive }) => (
             <SidebarItem icon={<HandshakeIcon size={32} />} label="Oportunidade" isOpen={isOpen} active={isActive} />
           )}
-        </NavLink>
+        </NavLink> */}
 
         <NavLink to="/sobrenos">
           {({ isActive }) => (

@@ -12,25 +12,25 @@ function Oportunidades() {
 
   return (
     <Layout>
-      <div className="h-full flex items-stretch gap-2 min-h-0">
+      {/* <div className="h-full flex items-stretch gap-2 min-h-0"> */}
 
         {/* Coluna 1 */}
-        <div className="w-1/2 p-4 pb-2 rounded-4xl shadow min-h-0 overflow-y-auto">
-          <ListaOportunidade onSelect={setSelectedCard} />
-        </div>
+        {/* <div className="p-4 pb-2 rounded-4xl shadow min-h-0 overflow-y-auto"> */}
+          <ListaOportunidade />
+        {/* </div> */}
 
         {/* Coluna 2 */}
-        <div className="w-1/2">
+        {/* <div className="w-1/2">
           <div className="p-4 pb-2 bg-white/20 rounded-4xl shadow min-h-0 h-2/3 overflow-y-auto">
             <DetalhesOportunidade oportunidade={selectedCard} />
           </div>
             <div className="h-1/3 p-4 rounded-4xl overflow-y-auto flex justify-center items-center">
             <ModalOportunidade />
           </div>
-        </div>
+        </div> */}
         
 
-      </div>
+      {/* </div> */}
 
     </Layout>
   )

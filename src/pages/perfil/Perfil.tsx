@@ -28,7 +28,7 @@ function Perfil() {
 									<div className="p-4 flex h-full bg-white/20 rounded-4xl">
 										<div className="w-1/2 h-full backdrop-blur-sm p-2 flex flex-col items-center justify-center">
 											<img
-											className="w-100 h-100 rounded-full object-cover border-4 border-(--color-picton-blue-800)"
+											className="w-80 h-80 rounded-full object-cover border-4 border-white/20"
 											src={usuario.foto}
 											alt={`Foto de perfil de ${usuario.nome}`}
 											/>

@@ -91,14 +91,14 @@ export default function AtualizacaoStatusSelect({
   }
 
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="flex flex-col gap-2 w-full ">
 
       {/* Select principal */}
-      <select
+      <select 
   value={status}
   onChange={handleSelectChange}
   disabled={readOnly || loading}
-  className="border p-2 border-slate-800 rounded text-slate-800 "
+  className="border p-2 border-white rounded bg-black/30 text-white"
 >
         {STATUS_OPTIONS.map((opt) => (
           <option key={opt.key} value={opt.key}>

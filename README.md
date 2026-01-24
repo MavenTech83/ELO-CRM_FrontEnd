@@ -10,6 +10,10 @@ O **Elo CRM** é uma solução desenvolvida para otimizar e centralizar o gerenc
 
 Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucro por produto, a perda de leads por cotações expiradas e a ineficiência na rastreabilidade de dados. Com o Elo CRM, transformamos potencial em lucro, garantindo que nenhuma oportunidade seja perdida.
 
+![Versão 1](https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_ELOCRM.jpg)
+![Descrição da imagem 2](https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg)
+![Descrição da imagem 3](https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg)
+
 ### 🚀 Diferenciais e Proposta de Valor
 
 * **Gestão Completa de Oportunidades:** Visualize e gerencie o funil de vendas de forma intuitiva.

@@ -9,10 +9,31 @@
 O **Elo CRM** é uma solução desenvolvida para otimizar e centralizar o gerenciamento de clientes e o ciclo de vendas, com foco especial em corretores e seguradoras.
 
 Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucro por produto, a perda de leads por cotações expiradas e a ineficiência na rastreabilidade de dados. Com o Elo CRM, transformamos potencial em lucro, garantindo que nenhuma oportunidade seja perdida.
+<p align="center">
+  <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_ELOCRM.jpg" width="45%" />
+  <img src="" width="45%" />
+</p>
 
-![Versão 1](https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_ELOCRM.jpg)
-![Descrição da imagem 2](https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg)
-![Descrição da imagem 3](https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg)
+<p align="center">
+  <img src="img3.png" width="45%" />
+  <img src="img4.png" width="45%" />
+</p>
+<p align="center">
+  <img src="img3.png" width="45%" />
+  <img src="img4.png" width="45%" />
+</p>
+<p align="center">
+  <img src="img3.png" width="45%" />
+  <img src="img4.png" width="45%" />
+</p>
+<p align="center">
+  <img src="img3.png" width="45%" />
+  <img src="img4.png" width="45%" />
+</p>
+<p align="center">
+  <img src="img3.png" width="45%" />
+  <img src="img4.png" width="45%" />
+</p>
 
 ### 🚀 Diferenciais e Proposta de Valor
 

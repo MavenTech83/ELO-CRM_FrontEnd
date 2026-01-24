@@ -137,7 +137,7 @@ function ListaOportunidade() {
                     
                     {/* LISTA DE OPORTUNIDADES */}
                     {(!isLoading && oportunidadesFiltradas.length > 0) && (
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-2 gap-3 w-full">
                             {oportunidadesFiltradas.map((oportunidade) => ( 
                                 <div 
                                     key={oportunidade.id} 

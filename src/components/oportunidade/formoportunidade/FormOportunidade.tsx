@@ -240,6 +240,7 @@ export default function FormOportunidade({ onSuccess }: FormOportunidadeProps) {
         console.log("Resposta create:", res);
         ToastAlerta("Oportunidade cadastrada com sucesso", "sucesso");
         onSuccess?.();
+        navigate("/oportunidades")
        }
       
     } catch (error: any) {

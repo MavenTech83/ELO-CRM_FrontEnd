@@ -34,7 +34,7 @@ function Home() {
 											{/* <h2 className="text-3xl font-bold text-amber-50">
 												Oportunidades
 											</h2> */}
-											<section className="flex gap-4 w-2/3">
+											<section className="flex gap-4 w-full">
 												<ModalCliente/>
 												<ModalOportunidade />
 											</section>

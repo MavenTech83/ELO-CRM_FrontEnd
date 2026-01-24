@@ -126,6 +126,7 @@ function FormCliente({
                          navigate('/clientes');
                     } else if (onSuccess) {
                         onSuccess();
+                        navigate('/clientes');
                     } else {
                         navigate('/clientes');
                     }

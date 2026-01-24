@@ -105,14 +105,14 @@ function ListaOportunidade() {
         <section className=" h-[75vh] rounded-4xl p-3">
             <div className="flex gap-3 h-full w-full">
             {/* CONTEÚDO 1 - LISTAR DADOS */}
-            <div className="bg-white/20 rounded-3xl p-4 flex flex-col h-full w-3/5 gap-1 overflow-hidden">
+            <div className="bg-white/10 rounded-3xl p-4 flex flex-col h-full w-3/5 gap-1 overflow-hidden">
                 <div className="flex items-center justify-between mb-4 flex-none gap-4">
                     <h2 className="text-3xl font-bold text-amber-50">
                         Oportunidades
                     </h2>
                     <section className="flex gap-4 w-2/3">
                         <ModalCliente/>
-                        <ModalOportunidade />
+                        <ModalOportunidade onSuccess={buscarTodasOportunidades} />
                     </section>
                     
                 </div>
@@ -152,7 +152,7 @@ function ListaOportunidade() {
                         </div>
                 </div>
             {/* CONTEÚDO 2 - FILTROS E DADOS */}
-            <div className="flex flex-col bg-white/20 rounded-2xl h-full w-2/5 overflow-hidden">
+            <div className="flex flex-col bg-white/10 rounded-2xl h-full w-2/5 overflow-hidden">
                 <section className="flex flex-col">
                     <div className="rounded-2xl p-4 animate-fadeIn">
                     <h3 className="text-lg font-semibold mb-3">Filtrar Oportunidades</h3> 
@@ -232,7 +232,7 @@ function ListaOportunidade() {
                             setFiltroValorMin('')
                             setFiltroValorMax('')
                         }}
-                        className="mt-3 w-full bg-indigo-900 text-white py-2 rounded-lg hover:bg-indigo-800 transition-colors"
+                        className="mt-3 w-full bg-indigo-900 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors hover:scale-[0.98]"
                         aria-label="Limpar todos os filtros"
                     >
                         Limpar Filtros

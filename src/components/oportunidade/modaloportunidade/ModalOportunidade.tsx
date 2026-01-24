@@ -4,7 +4,11 @@ import 'reactjs-popup/dist/index.css';
 import FormOportunidade from '../formoportunidade/FormOportunidade';
 import { HandshakeIcon } from '@phosphor-icons/react';
 
-function ModalOportunidade() {
+interface ModalOportunidadeProps {
+  onSuccess?: () => void
+}
+
+function ModalOportunidade({ onSuccess }: ModalOportunidadeProps) {
     return (
         <>
             <Popup
@@ -26,7 +30,14 @@ function ModalOportunidade() {
                     overflow: 'visible',
                 }}
             >
-                <FormOportunidade />
+                {((close: () => void) => (
+                    <FormOportunidade
+                    onSuccess={() => {
+                        onSuccess?.();
+                        close();
+                    }}
+                    />
+                )) as any}
             </Popup>
         </>
     );

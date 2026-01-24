@@ -25,7 +25,7 @@ function Perfil() {
 							<section className=" h-[75vh] rounded-4xl p-3">
 								<div className="flex flex-col gap-4 h-full">
 									{/* CONTEÚDO 1 - LISTAR DADOS */}
-									<div className="p-4 flex h-full bg-white/20 rounded-4xl">
+									<div className="p-4 flex h-full bg-white/10 rounded-4xl">
 										<div className="w-1/2 h-full backdrop-blur-sm p-2 flex flex-col items-center justify-center">
 											<img
 											className="w-80 h-80 rounded-full object-cover border-4 border-white/20"

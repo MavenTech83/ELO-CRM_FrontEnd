@@ -81,7 +81,7 @@ export default function ListaClientes({onSelect}: ListaClienteProps) {
                             Nenhuma Oportunidade foi encontrada!
                         </span>
                     )}
-                    <div className="overflow-y-auto" >
+                    <div className="overflow-y-auto grid grid-cols-2 gap-3" >
                         {
                             
                             clientes.map((cliente) => ( 

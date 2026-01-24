@@ -8,7 +8,7 @@ import ModalCliente from "../../components/cliente/modalcliente/ModalCliente";
 import { useState } from "react";
 import DetalhesOportunidade from "../../components/oportunidade/detalhesoportunidades/DetalhesOportunidade";
 import { BarChart } from '@mui/x-charts/BarChart';
-import { BarPlot, ChartDataProvider, ChartsXAxis, LineChart, PieChart, redPalette } from "@mui/x-charts";
+import { LineChart, PieChart} from "@mui/x-charts";
 function Home() {
 	const navigate = useNavigate()
 	 
@@ -29,7 +29,7 @@ function Home() {
 								{/* <ListaOportunidade /> */}
 								<div className="flex gap-4 h-full">
 									{/* CONTEÚDO 1 - LISTAR DADOS */}
-									<div className="bg-white/20 rounded-3xl p-4 flex flex-col h-full w-2/3 gap-1 overflow-hidden">
+									<div className="bg-white/10 rounded-3xl p-4 flex flex-col h-full w-2/3 gap-1 overflow-hidden">
 										<div className="flex items-center justify-between mb-4 flex-none">
 											{/* <h2 className="text-3xl font-bold text-amber-50">
 												Oportunidades
@@ -94,16 +94,16 @@ function Home() {
 										</div>
 									</div>
 									{/* CONTEÚDO 2 - FILTROS E DADOS */}
-									<div className="flex flex-col bg-white/20 rounded-2xl h-full w-1/3 overflow-hidden">
+									<div className="flex flex-col bg-white/10 rounded-2xl h-full w-1/3 overflow-hidden">
 										<section className="flex flex-col p-2">
 											<div className="bg-white/10 border rounded-2xl">
 												<PieChart
 												series={[
 													{
 													data: [
-														{ id: 0, value: 10, label: 'series A' },
-														{ id: 1, value: 15, label: 'series B' },
-														{ id: 2, value: 20, label: 'series C' },
+														{ id: 0, value: 10, label: 'Abertas' },
+														{ id: 1, value: 15, label: 'Fechadas' },
+														{ id: 2, value: 20, label: 'Perdidas' },
 													],
 													},
 												]}

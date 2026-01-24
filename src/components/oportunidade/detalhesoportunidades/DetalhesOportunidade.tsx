@@ -19,7 +19,7 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
 
   return (
     <div className="space-y-3 animate-fadeIn text-amber-50  ">
-      <h1 className="text-2xl font-bold  text-amber-50 (--color-picton-blue-200)">
+      <h1 className="text-2xl font-bold text-amber-50 (--color-picton-blue-200)">
         {oportunidade.descricao}
       </h1>
 

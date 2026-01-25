@@ -9,31 +9,58 @@
 O **Elo CRM** é uma solução desenvolvida para otimizar e centralizar o gerenciamento de clientes e o ciclo de vendas, com foco especial em corretores e seguradoras.
 
 Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucro por produto, a perda de leads por cotações expiradas e a ineficiência na rastreabilidade de dados. Com o Elo CRM, transformamos potencial em lucro, garantindo que nenhuma oportunidade seja perdida.
-<p align="center">
-  <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_ELOCRM.jpg" width="45%" />
-  <img src="" width="45%" />
-</p>
-
-<p align="center">
-  <img src="img3.png" width="45%" />
-  <img src="img4.png" width="45%" />
-</p>
-<p align="center">
-  <img src="img3.png" width="45%" />
-  <img src="img4.png" width="45%" />
-</p>
-<p align="center">
-  <img src="img3.png" width="45%" />
-  <img src="img4.png" width="45%" />
-</p>
-<p align="center">
-  <img src="img3.png" width="45%" />
-  <img src="img4.png" width="45%" />
-</p>
-<p align="center">
-  <img src="img3.png" width="45%" />
-  <img src="img4.png" width="45%" />
-</p>
+<table>
+  <th> Versão 1 </th>
+  <th> Versão 2 </th>
+  <tr>
+    <td align="center">
+      <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_ELOCRM.jpg?updatedAt=1769234663137" width="100%"/>
+    </td>
+    <td align="center">
+      <img src="" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+       <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_perfil_ELOCRM.jpg?updatedAt=1769234663505" width="100%"/>
+     </td>
+    <td align="center">
+      <img/>
+     </td>
+  </tr>
+  <tr>
+    <td align="center">
+    <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_clientes_ELOCRM.jpg?updatedAt=1769234663018" width="100%"/>
+    </td>
+    <td align="center">
+      <img src="" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg?updatedAt=1769234663175" width="100%"/>
+    </td>
+    <td align="center">
+      <img src="" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg?updatedAt=1769234663175" width="100%"/>
+    </td>
+    <td align="center">
+      <img src="" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_sobreprojeto_ELOCRM.jpg?updatedAt=1769234663445" width="100%"/>
+    </td>
+    <td align="center">
+      <img src="" width="100%"/>
+    </td>
+  </tr>
+</table>
 
 ### 🚀 Diferenciais e Proposta de Valor
 

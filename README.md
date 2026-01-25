@@ -41,7 +41,7 @@ Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucr
       <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg?updatedAt=1769234663175" width="100%"/>
     </td>
     <td align="center">
-      <img src="" width="100%"/>
+      <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o2_Oportunidade_ELOCRM.jpg" width="100%"/>
     </td>
   </tr>
   <tr>

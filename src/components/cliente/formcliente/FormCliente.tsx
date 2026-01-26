@@ -119,13 +119,14 @@ function FormCliente({
                     headers: { Authorization: token }
                 })
                 ToastAlerta("O Cliente foi atualizado com sucesso!", 'sucesso')
-
                 setTimeout(() => {
                     setIsLoading(false);
                     if (isModal && onSuccess) {
                         onSuccess();
+                         navigate('/clientes');
                     } else if (onSuccess) {
                         onSuccess();
+                        navigate('/clientes');
                     } else {
                         navigate('/clientes');
                     }
@@ -136,12 +137,11 @@ function FormCliente({
                     headers: { Authorization: token }
                 })
                 ToastAlerta("O Cliente foi cadastrado com sucesso!", 'sucesso')
-                
-
                 setTimeout(() => {
                     setIsLoading(false);
                     if (onSuccess) {
                         onSuccess();
+                        navigate('/clientes');
                     } else {
                         navigate('/clientes');
                     }

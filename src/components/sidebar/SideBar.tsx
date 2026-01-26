@@ -3,10 +3,15 @@ import { useContext, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ToastAlerta } from "../../utils/ToastAlerta";
+import { UseLocalStorageState } from "../../utils/UseLocalStorageState";
+
 
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = UseLocalStorageState<boolean>(
+    "sidebar-open",
+    true
+  );
 
   const navigate = useNavigate();
 
@@ -22,10 +27,10 @@ export default function Sidebar() {
   return (
     <div className={`h-screen rounded-3xl bg-(--color-picton-blue-950) text-white flex flex-col p-4 transition-all duration-300 
       ${isOpen ? "w-64" : "w-20"}`}>
-        <img src="https://ik.imagekit.io/lefcc/ELO%20CRM/logo_elo2223.png?updatedAt=1764871666869" className="bg-white/80 rounded-2xl" alt="" />
+        <img src="https://ik.imagekit.io/lefcc/ELO%20CRM/logo_elo2223.png?updatedAt=1764871666869" className="bg-white rounded-2xl" alt="" />
       {/* Botão de expandir/recolher */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen((prev) => !prev)}
         className="mb-6 flex items-center gap-2 hover:bg-(--color-picton-blue-800) active:bg-(--color-picton-blue-800) p-2 rounded-lg"
       >
         <ListIcon size={34} />

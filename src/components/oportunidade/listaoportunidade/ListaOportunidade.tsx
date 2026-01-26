@@ -6,12 +6,12 @@ import CardOportunidade from "../cardoportunidade/CardOportunidade";
 import { buscarOportunidades } from "../../../services/OportunidadeService";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
+import ModalCliente from "../../cliente/modalcliente/ModalCliente";
+import ModalOportunidade from "../modaloportunidade/ModalOportunidade";
+import DetalhesOportunidade from "../detalhesoportunidades/DetalhesOportunidade";
 
-interface ListaOportunidadeProps {
-  onSelect: (oportunidade: Oportunidade) => void;
-}
-
-function ListaOportunidade({ onSelect }: ListaOportunidadeProps) {
+// function ListaOportunidade({ onSelect }: ListaOportunidadeProps) {
+function ListaOportunidade() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [oportunidades, setOportunidades] = useState<Oportunidade[]>([]) 
@@ -22,8 +22,7 @@ function ListaOportunidade({ onSelect }: ListaOportunidadeProps) {
     const [filtroStatus, setFiltroStatus] = useState<string>('')
     const [filtroValorMin, setFiltroValorMin] = useState<string>('')
     const [filtroValorMax, setFiltroValorMax] = useState<string>('')
-    const [mostrarFiltros, setMostrarFiltros] = useState<boolean>(false)
-    
+    const [selectedCard, setSelectedCard] = useState<Oportunidade | null>(null);
     const token = usuario.token
 
     useEffect(() => {
@@ -78,7 +77,7 @@ function ListaOportunidade({ onSelect }: ListaOportunidadeProps) {
 }
 
     // Função de filtro
-const oportunidadesFiltradas = oportunidades.filter((oportunidade) => {
+    const oportunidadesFiltradas = oportunidades.filter((oportunidade) => {
     const matchTexto = !filtroTexto || 
         oportunidade.descricao?.toLowerCase().includes(filtroTexto.toLowerCase())
     
@@ -103,23 +102,62 @@ const oportunidadesFiltradas = oportunidades.filter((oportunidade) => {
 
     return (
         <>
-            {/* BOTÃO FILTRAR */}
-            <div className="mb-4">
-                <button
-                    onClick={() => setMostrarFiltros(!mostrarFiltros)}
-                    className="w-full bg-indigo-900 text-white py-3 rounded-2xl hover:bg-indigo-800 transition-colors font-semibold"
-                    aria-label="Abrir filtros"
-                >
-                    {mostrarFiltros ? '🔼 Ocultar Filtros' : '🔽 Filtrar Oportunidades'}
-                </button>
-            </div>
-
-            {/* SEÇÃO DE FILTROS (COLAPSÁVEL) */}
-            {mostrarFiltros && (
-                <div className="bg-white/30 rounded-2xl p-4 mb-4 animate-fadeIn">
-                    <h3 className="text-lg font-semibold mb-3">Filtrar Oportunidades</h3>
+        <section className=" h-[75vh] rounded-4xl p-3">
+            <div className="flex gap-3 h-full w-full">
+            {/* CONTEÚDO 1 - LISTAR DADOS */}
+            <div className="bg-white/10 rounded-3xl p-4 flex flex-col h-full w-3/5 gap-1 overflow-hidden">
+                <div className="flex items-center justify-between mb-4 flex-none gap-4">
+                    <h2 className="text-3xl font-bold text-amber-50">
+                        Oportunidades
+                    </h2>
+                    <section className="flex gap-4 w-2/3">
+                        <ModalCliente/>
+                        <ModalOportunidade onSuccess={buscarTodasOportunidades} />
+                    </section>
                     
-                    {/* Busca por texto */}
+                </div>
+
+                <div className="flex overflow-y-auto min-h-0 space-y-2 pr-2">
+                    {/* LOADING */}
+                    {isLoading && (
+                        <div className="flex justify-center w-full my-8">
+                        <SyncLoader
+                            color="#bce7fb"
+                            size={32}
+                    />
+                </div>
+                    )}
+
+                    {/* MENSAGEM QUANDO NÃO TEM RESULTADOS */}
+                    {(!isLoading && oportunidadesFiltradas.length === 0) && ( 
+                        <div className="text-center my-8">
+                            <span className="text-xl">Nenhuma Oportunidade foi encontrada!</span>
+                        </div>
+                    )}
+                    
+                    {/* LISTA DE OPORTUNIDADES */}
+                    {(!isLoading && oportunidadesFiltradas.length > 0) && (
+                        <div className="grid grid-cols-2 gap-3 w-full">
+                            {oportunidadesFiltradas.map((oportunidade) => ( 
+                                <div 
+                                    key={oportunidade.id} 
+                                    onClick={() => setSelectedCard(oportunidade)}
+                                    className="cursor-pointer hover:scale-[0.98] transition-transform"
+                                >
+                                    <CardOportunidade oportunidade={oportunidade}/>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                        </div>
+                </div>
+            {/* CONTEÚDO 2 - FILTROS E DADOS */}
+            <div className="flex flex-col bg-white/10 rounded-2xl h-full w-2/5 overflow-hidden">
+                <section className="flex flex-col">
+                    <div className="rounded-2xl p-4 animate-fadeIn">
+                    <h3 className="text-lg font-semibold mb-3">Filtrar Oportunidades</h3> 
+                    
+                    {/* {/* Busca por texto */}
                     <div className="mb-3">
                         <label htmlFor="filtro-texto" className="block text-sm font-medium mb-1">
                             Buscar por descrição
@@ -147,10 +185,10 @@ const oportunidadesFiltradas = oportunidades.filter((oportunidade) => {
                             className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             aria-label="Selecionar status da oportunidade"
                         >
-                            <option value="">Todos os status</option>
-                            <option value="Aberta">Aberta</option>
-                            <option value="Fechada">Fechada</option>
-                            <option value="Perdida">Perdida</option>
+                            <option value="" className="text-black">Todos os status</option>
+                            <option value="Aberta" className="text-black">Aberta</option>
+                            <option value="Fechada" className="text-black">Fechada</option>
+                            <option value="Perdida" className="text-black">Perdida</option>
                         </select>
                     </div>
 
@@ -194,42 +232,20 @@ const oportunidadesFiltradas = oportunidades.filter((oportunidade) => {
                             setFiltroValorMin('')
                             setFiltroValorMax('')
                         }}
-                        className="mt-3 w-full bg-indigo-900 text-white py-2 rounded-lg hover:bg-indigo-800 transition-colors"
+                        className="mt-3 w-full bg-indigo-900 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors hover:scale-[0.98]"
                         aria-label="Limpar todos os filtros"
                     >
                         Limpar Filtros
                     </button>
                 </div>
-            )}
-
-            {/* LOADING */}
-            {isLoading && (
-                <div className="flex justify-center my-8">
-                    <SyncLoader color="#312e81" size={32} />
-                </div>
-            )}
-
-            {/* MENSAGEM QUANDO NÃO TEM RESULTADOS */}
-            {(!isLoading && oportunidadesFiltradas.length === 0) && ( 
-                <div className="text-center my-8">
-                    <span className="text-xl">Nenhuma Oportunidade foi encontrada!</span>
-                </div>
-            )}
-            
-            {/* LISTA DE OPORTUNIDADES */}
-            {(!isLoading && oportunidadesFiltradas.length > 0) && (
-                <div className="grid grid-cols-2 gap-3">
-                    {oportunidadesFiltradas.map((oportunidade) => ( 
-                        <div 
-                            key={oportunidade.id} 
-                            onClick={() => onSelect(oportunidade)}
-                            className="cursor-pointer hover:scale-[0.98] transition-transform"
-                        >
-                            <CardOportunidade oportunidade={oportunidade}/>
-                        </div>
-                    ))}
-                </div>
-            )}
+                </section>
+                <section className="p-4">
+                    <hr className="text-white/60 p-2"/>
+                        <DetalhesOportunidade oportunidade={selectedCard} />
+                </section>
+            </div>
+        </div>
+        </section>
         </>
     )
 }

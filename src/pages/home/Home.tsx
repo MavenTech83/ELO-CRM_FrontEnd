@@ -2,97 +2,138 @@ import Layout from "../../components/layout/Layout"
 import { useNavigate } from "react-router-dom"
 import type Oportunidade from "../../models/Oportunidade"
 import ListaOportunidade from "../../components/oportunidade/listaoportunidade/ListaOportunidade"
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import FormOportunidade from "../../components/oportunidade/formoportunidade/FormOportunidade";
-import FormCliente from "../../components/cliente/formcliente/FormCliente";
-
+import ModalOportunidade from "../../components/oportunidade/modaloportunidade/ModalOportunidade";
+import ModalCliente from "../../components/cliente/modalcliente/ModalCliente";
+import { useState } from "react";
+import DetalhesOportunidade from "../../components/oportunidade/detalhesoportunidades/DetalhesOportunidade";
+import { BarChart } from '@mui/x-charts/BarChart';
+import { LineChart, PieChart} from "@mui/x-charts";
+import ToDoList from "../../components/todolist/ToDoList";
 function Home() {
 	const navigate = useNavigate()
+	 
 
 	const handleSelectOportunidade = (oportunidade: Oportunidade) => {
 		console.log("Oportunidade selecionada:", oportunidade.id)
 	}
+	const [selectedCard, setSelectedCard] = useState<Oportunidade | null>(null);
 
 	return (
 		<>
 			<Layout>
 				<div className="flex-1 transition-all duration-300 ">
 					<div className="flex flex-col">
-
-						{/* SEÇÃO SUPERIOR ... (mantém igual) */}
-						<div className="grid grid-cols-2 gap-2 w-full">
-						
-						
-							
-						</div>
-
-						{/* SEÇÃO INFERIOR */}
-						<div className="pt-1">
-							<section className="bg-white/20 h-[75vh] rounded-4xl p-3">
-								<div className="grid grid-cols-[3fr_1fr] gap-4 h-full">
-
-									<div className="bg-(--color-picton-blue-800) rounded-3xl p-4 flex flex-col h-full w-full gap-1 overflow-hidden">
+  						<div className="pt-1">
+							{/* SEÇÃO PAI NÃO MODIFICAR */}
+							<section className=" h-[75vh] rounded-4xl p-3">
+								{/* <ListaOportunidade /> */}
+								<div className="flex gap-4 h-full">
+									{/* CONTEÚDO 1 - LISTAR DADOS */}
+									<div className="bg-white/10 rounded-3xl p-4 flex flex-col h-full w-2/3 gap-1 overflow-hidden">
 										<div className="flex items-center justify-between mb-4 flex-none">
-											<h2 className="text-3xl font-bold text-amber-50 ">
+											{/* <h2 className="text-3xl font-bold text-amber-50">
 												Oportunidades
-											</h2>
-
-
-										
-
+											</h2> */}
+											<section className="flex gap-4 w-full">
+												<ModalCliente/>
+												<ModalOportunidade />
+											</section>
+											
 										</div>
 
-										<div className="flex-1 overflow-y-auto min-h-0 space-y-2 pr-2">
-											<ListaOportunidade onSelect={handleSelectOportunidade} />
-										</div>
-									</div>
-
-									<div className="flex flex-col items-center justify-center h-full overflow-hidden gap-3 ">
-											<Popup
-												trigger={
-													<button className="bg-emerald-600 hover:bg-emerald-700 text-white w-5/6 px-4 py-2 rounded-2xl text-base font-semibold shadow-md">
-														Cadastrar Nova oportunidade
-													</button>
-												}
-												modal
-												nested
-												contentStyle={{
-													borderRadius: '1rem',
-													width: '90vw',     // Ajusta largura automática
-													maxWidth: '90vh'  // Limite máximo para não estourar
-												}}
-											>
-
-												<div>
-													<FormOportunidade />
-												</div>
-											</Popup>
-
-										<Popup
-											trigger={
-												<button
-													className="bg-(--color-picton-blue-950) hover:bg-(--color-picton-blue-800) text-white px-4 py-2 w-5/6 rounded-2xl text-base font-semibold shadow-md"
-												>
-													<span>Cadastrar Novo Cliente</span>
+										<div className="flex flex-col gap-2">
+											{/* <ListaOportunidade onSelect={setSelectedCard} /> */}
+												<div className="bg-white/10 border rounded-2xl text-white" >
+													<LineChart
+														xAxis={[{ data: [1, 2, 3, 5, 8, 10],tickLabelStyle: { fill: 'white' } }]}
+														yAxis={[{ tickLabelStyle: { fill: 'white' } }]}
+														series={[
+															{
+															data: [2, 5.5, 2, 8.5, 1.5, 5],
+															area: true,
+															label: 'Projeção Ganhos'
+															},
+														]}
+														sx={{
+															'& .MuiChartsAxis-line, & .MuiChartsAxis-tick': {
+															stroke: 'white',
+															fill:'white',
+															},
+															'& .MuiChartsLegend-root': {
+															color: 'white',
+															},
+															'& .MuiChartsLegend-mark': {
+															backgroundColor: 'white',
+															},
+														}}
+														height={200}
+													/>
 													
-												</button>
-											}
-											modal
-											nested
-											contentStyle={{
-												borderRadius: '1rem',
-												width: '90vw',
-												maxWidth: '90vh'
-											}}
-										>
-											{/* O COMPONENTE DO FORMULÁRIO ENTRA AQUI */}
-											<div>
-												<FormCliente />
-											</div>
-										</Popup>
+
+												</div>
+												<div className="bg-white/10 border rounded-2xl text-white">
+													<BarChart
+														xAxis={[{ data: ['Jan', 'Fev', 'Mar'], tickLabelStyle: { fill: 'white' } }]}
+														yAxis={[{ tickLabelStyle: { fill: 'white' } }]}
+														series={[{ data: [10, 20, 30], label: 'Total Oportunidades' }]}
+														sx={{
+															'& .MuiChartsAxis-line, & .MuiChartsAxis-tick': {
+															fill: 'white',
+															stroke: 'white',
+															},
+															'& .MuiChartsLegend-root': {
+															color: 'white',
+															},
+															'& .MuiChartsLegend-mark': {
+															backgroundColor: 'white',
+															},
+														}}
+														width={500}
+														height={300}
+													/>
+												</div>
+												
+										</div>
 									</div>
-								</div>
+									{/* CONTEÚDO 2 - FILTROS E DADOS */}
+									<div className="flex flex-col bg-white/10 rounded-2xl h-full w-1/3 overflow-hidden">
+										<section className="flex flex-col p-2">
+											<div className="bg-white/10 border rounded-2xl">
+												<PieChart
+												series={[
+													{
+													data: [
+														{ id: 0, value: 10, label: 'Abertas' },
+														{ id: 1, value: 15, label: 'Fechadas' },
+														{ id: 2, value: 20, label: 'Perdidas' },
+													],
+													},
+												]}
+												sx={{
+															'& .MuiChartsAxis-line, & .MuiChartsAxis-tick': {
+															fill: 'white',
+															stroke: 'white',
+															},
+															'& .MuiChartsLegend-root': {
+															color: 'white',
+															},
+														}}
+												width={150}
+												height={200}
+												/>
+											</div>
+											 
+										</section>
+										<section className="p-2 h-full">
+											<div className="bg-white/10 border rounded-2xl h-full">
+												<ToDoList />
+											</div>
+											{/* <hr className="text-white/60 p-2"/>
+											 <DetalhesOportunidade oportunidade={selectedCard} /> */}
+										</section>
+									</div>
+								</div> 
 							</section>
 						</div>
 					</div>

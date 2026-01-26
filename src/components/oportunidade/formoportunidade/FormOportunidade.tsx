@@ -24,9 +24,11 @@ import {
 import AtualizacaoStatusSelect from "../../statusoportunidade/StatusOportunidade";
 import TIPOS_FALLBACK from "../../../data/TiposOportunidade";
 
+interface FormOportunidadeProps {
+  onSuccess?: () => void
+}
 
-
-export default function FormOportunidade() {
+export default function FormOportunidade({ onSuccess }: FormOportunidadeProps) {
   const navigate = useNavigate();
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
@@ -205,7 +207,6 @@ export default function FormOportunidade() {
       payload.dataCriacao = new Date().toISOString().slice(0, 10); // hoje YYYY-MM-DD
     }
   
-  
     // validação mínima (evita 400 por campos faltando)
     if (!payload.descricao || payload.descricao.trim() === "") {
       ToastAlerta("A descrição é obrigatória", "info");
@@ -230,15 +231,17 @@ export default function FormOportunidade() {
         });
         console.log("Resposta update:", res);
         ToastAlerta("Oportunidade atualizada com sucesso", "sucesso");
-        navigate('/oportunidades');
-      } else {
+        onSuccess?.();
+        navigate("/oportunidades")
+       } else {
         const res = await cadastrarOportunidadeService(payload, setOportunidade, {
           headers: { Authorization: token }
         });
         console.log("Resposta create:", res);
         ToastAlerta("Oportunidade cadastrada com sucesso", "sucesso");
-        navigate('/oportunidades');
-      }
+        onSuccess?.();
+        navigate("/oportunidades")
+       }
       
     } catch (error: any) {
       console.error("Erro axios (detalhe):", error);

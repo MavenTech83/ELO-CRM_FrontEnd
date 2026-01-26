@@ -64,7 +64,7 @@ export default function Sidebar() {
           )}
         </NavLink>
 
-        <NavLink to="/sobrenos">
+        {/* <NavLink to="/sobrenos">
           {({ isActive }) => (
             <SidebarItem icon={<HeartIcon size={32} />} label="Sobre Nós" isOpen={isOpen} active={isActive} />
           )}
@@ -74,7 +74,7 @@ export default function Sidebar() {
           {({ isActive }) => (
             <SidebarItem icon={<CoffeeIcon size={32} />} label="Sobre Projeto" isOpen={isOpen} active={isActive} />
           )}
-        </NavLink>
+        </NavLink> */}
 
         {/* Botão de logout */}
         <button onClick={logout}>

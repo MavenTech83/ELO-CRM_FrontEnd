@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { cadastrarUsuario } from "../../services/Service";
 import { ToastAlerta } from "../../utils/ToastAlerta";
+import Navbar from "../../components/navbar/Navbar";
 
 
 export default function Cadastro() {
@@ -84,6 +85,7 @@ export default function Cadastro() {
 		className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
 		style={{ backgroundImage: "url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW1iN2FqN2ZweXF0djduN2s1djlydXM0OW9xeXZtdmE3dXNlc2c1biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7b8jdNUoFBdcoILjjv/giphy.gif')" }}
 		>
+			 <Navbar />
 		{/* Overlay opcional */}
 		<div className="absolute inset-0 bg-black/40"></div>
 

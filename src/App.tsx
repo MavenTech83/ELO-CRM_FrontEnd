@@ -16,6 +16,8 @@ import EditarClientePage from "./pages/clientes/EditarClientePage"
 import DeletarClientePage from "./pages/clientes/DeletarClientePage"
 import SobreNos from "./pages/sobrenos/SobreNos"
 import Cadastro from "./pages/cadastro/Cadastro"
+import SobreNosPublica from "./pages/sobrenospublica/SobreNosPublica"
+import SobreProjetoPublica from "./pages/sobreprojetopublica/sobreprojetopublica"
 
 
 
@@ -37,7 +39,9 @@ function App() {
 							<Route path="/deletarcliente/:id" element={<DeletarClientePage />} />
 							<Route path="/sobrenos" element={<SobreNos />} />
 							<Route path="/sobreprojeto" element={<SobreProjeto />} />
+							<Route path="/sobreprojetopublica" element={<SobreProjetoPublica />} />
 							<Route path="/cadastro" element={<Cadastro />} />
+							<Route path="/sobrenospublica" element={<SobreNosPublica />} />
 							
 					</Routes>
 				</BrowserRouter>

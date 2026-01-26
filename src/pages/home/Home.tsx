@@ -9,6 +9,7 @@ import { useState } from "react";
 import DetalhesOportunidade from "../../components/oportunidade/detalhesoportunidades/DetalhesOportunidade";
 import { BarChart } from '@mui/x-charts/BarChart';
 import { LineChart, PieChart} from "@mui/x-charts";
+import ToDoList from "../../components/todolist/ToDoList";
 function Home() {
 	const navigate = useNavigate()
 	 
@@ -51,12 +52,13 @@ function Home() {
 															{
 															data: [2, 5.5, 2, 8.5, 1.5, 5],
 															area: true,
-															label: 'Oportunidades Fechadas'
+															label: 'Projeção Ganhos'
 															},
 														]}
 														sx={{
 															'& .MuiChartsAxis-line, & .MuiChartsAxis-tick': {
 															stroke: 'white',
+															fill:'white',
 															},
 															'& .MuiChartsLegend-root': {
 															color: 'white',
@@ -77,6 +79,7 @@ function Home() {
 														series={[{ data: [10, 20, 30], label: 'Total Oportunidades' }]}
 														sx={{
 															'& .MuiChartsAxis-line, & .MuiChartsAxis-tick': {
+															fill: 'white',
 															stroke: 'white',
 															},
 															'& .MuiChartsLegend-root': {
@@ -107,15 +110,24 @@ function Home() {
 													],
 													},
 												]}
+												sx={{
+															'& .MuiChartsAxis-line, & .MuiChartsAxis-tick': {
+															fill: 'white',
+															stroke: 'white',
+															},
+															'& .MuiChartsLegend-root': {
+															color: 'white',
+															},
+														}}
 												width={150}
 												height={200}
 												/>
 											</div>
 											 
 										</section>
-										<section className="p-4 ">
+										<section className="p-2 h-full">
 											<div className="bg-white/10 border rounded-2xl h-full">
-												Anotações:
+												<ToDoList />
 											</div>
 											{/* <hr className="text-white/60 p-2"/>
 											 <DetalhesOportunidade oportunidade={selectedCard} /> */}

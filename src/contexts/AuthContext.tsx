@@ -7,6 +7,7 @@ interface AuthContexProps {
     usuario: UsuarioLogin
     handleLogout(): void
     handleLogin(usuario: UsuarioLogin): Promise<void>
+    updateUsuario(usuario: UsuarioLogin): void 
     isLoading: boolean
 }
 
@@ -29,6 +30,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
     })
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    // function updateUsuario(usuarioAtualizado: UsuarioLogin) {
+    // setUsuario(usuarioAtualizado)
+    // }
+    function updateUsuario(dados: Partial<UsuarioLogin>) {
+    setUsuario(prev => ({
+        ...prev,
+        ...dados
+    }))
+    }
+
 
     // Implementaçao da Função de Login, autenticaçao no backend
     async function handleLogin(usuarioLogin: UsuarioLogin){
@@ -58,7 +70,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
 
     return(
-        <AuthContext.Provider value={{ usuario, handleLogin, handleLogout, isLoading }}>
+        <AuthContext.Provider value={{ usuario, handleLogin, handleLogout, updateUsuario, isLoading }}>
             {children}
             </AuthContext.Provider>
     )

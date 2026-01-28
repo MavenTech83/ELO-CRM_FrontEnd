@@ -8,7 +8,7 @@ interface Props {
 export default function DetalhesOportunidade({ oportunidade }: Props) {
   if (!oportunidade) {
     return (
-      <div className="h-full flex items-center justify-center  text-amber-50 (--color-picton-blue-200) ">
+      <div className="h-full flex items-center justify-center text-amber-50 text-2xl ">
         Selecione uma oportunidade ao lado
       </div>
     );

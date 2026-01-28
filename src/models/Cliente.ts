@@ -6,5 +6,5 @@ export default interface Cliente {
     email: string;
     telefone?: string;
     endereco?: string | null;
-    oportunidade?: Oportunidade | null;
+    oportunidade?: Oportunidade[] | null;
 }

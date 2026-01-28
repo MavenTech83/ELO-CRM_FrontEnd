@@ -74,16 +74,16 @@ export default function ListaClientes() {
     }, [token, navigate])
 
     const clientesFiltrados = clientes.filter((cliente) => {
-  if (!filtroTexto) return true
+    if (!filtroTexto) return true
 
-  const texto = filtroTexto.toLowerCase()
+    const texto = filtroTexto.toLowerCase()
 
-  return (
-    cliente.nome?.toLowerCase().includes(texto) ||
-    cliente.email?.toLowerCase().includes(texto) ||
-    cliente.telefone?.toLowerCase().includes(texto)
-  )
-})
+    return (
+        cliente.nome?.toLowerCase().includes(texto) ||
+        cliente.email?.toLowerCase().includes(texto) ||
+        cliente.telefone?.toLowerCase().includes(texto)
+    )
+    })
 
     return (
         <>
@@ -143,7 +143,7 @@ export default function ListaClientes() {
             <div className="flex flex-col bg-white/10 rounded-2xl h-full w-2/5 overflow-hidden">
                 <section className="flex flex-col">
                     <div className="rounded-2xl p-4 animate-fadeIn">
-                    <h3 className="text-lg font-semibold mb-3">Filtrar Oportunidades</h3> 
+                    <h3 className="text-lg font-semibold mb-3">Filtrar Clientes</h3> 
                     
                     {/* {/* Busca por texto */}
                     <div className="mb-4">
@@ -168,52 +168,6 @@ export default function ListaClientes() {
             </div>
         </div>
         </section>
-                    
-       {/* {isLoading && (
-                <div className="flex justify-center w-full my-8">
-                    <SyncLoader
-                        color="#bce7fb"
-                        size={32}
-                    />
-                </div>
-            )}
-            <div className="flex justify-center w-full my-4">
-                <div className="container flex flex-col">
-                    {(!isLoading && clientes.length === 0) && ( 
-                        <span className="text-3xl text-center my-8">
-                            Nenhuma Oportunidade foi encontrada!
-                        </span>
-                    )}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium mb-1">
-                            Buscar cliente
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Digite nome, email ou telefone..."
-                            value={filtroTexto}
-                            onChange={(e) => setFiltroTexto(e.target.value)}
-                            className="w-full px-3 py-2 rounded-lg border border-gray-300
-                                    focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        />
-                    </div>
-
-                    <div className="overflow-y-auto grid grid-cols-2 gap-3" >
-                        {
-                            
-                            clientesFiltrados.map((cliente) => (
-                                <div 
-                                key={cliente.id} 
-                                onClick={() => onSelect(cliente)}
-                                className="cursor-pointer hover:scale-[0.98] transition-transform"
-                                >
-                                <CardClientes cliente={cliente}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div> */}
         </>
     )
     

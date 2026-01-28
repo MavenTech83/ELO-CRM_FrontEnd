@@ -13,7 +13,39 @@ export default function DetalhesCliente({ cliente }: Props) {
       </div>
     );
   }
-      console.log(cliente)
+    function formatarTelefone(telefone?: string) {
+    if (!telefone) return "Não informado";
+
+    const somenteNumeros = telefone.replace(/\D/g, "");
+
+    if (somenteNumeros.length === 11) {
+      return somenteNumeros.replace(
+        /(\d{2})(\d{5})(\d{4})/,
+        "($1) $2-$3"
+      );
+    }
+
+    if (somenteNumeros.length === 10) {
+      return somenteNumeros.replace(
+        /(\d{2})(\d{4})(\d{4})/,
+        "($1) $2-$3"
+      );
+    }
+
+    return telefone; // fallback
+  }
+
+  function formatarMoeda(valor?: number) {
+    if (valor === null || valor === undefined) {
+      return "Não informado";
+    }
+
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(valor);
+  }
+
   return (
     <div className="space-y-3 animate-fadeIn text-amber-50 ">
       <h1 className="text-2xl font-bold text-amber-50 ">
@@ -22,7 +54,7 @@ export default function DetalhesCliente({ cliente }: Props) {
       <div>
         <p><b>E-mail:</b> {cliente.email}</p>
         <p><b>Endereço:</b> {cliente.endereco || "Não informado"}</p>
-        <p><b>Telefone:</b> {cliente.telefone || "Não informado"}</p>
+        <p><b>Telefone:</b> {formatarTelefone(cliente.telefone)}</p>
         <b>Oportunidades:</b>
        {cliente.oportunidade.length > 0 ? (
           cliente.oportunidade.map((oportunidadeCliente) => (
@@ -36,7 +68,10 @@ export default function DetalhesCliente({ cliente }: Props) {
 							</summary>
 							<div className="px-4 pb-4 text-sm text-white">
 								{/* <p className="ps-4"><b>Status:</b> {oportunidadeCliente?.status || "Não informado"}</p> */}
-								<p className="ps-4"><b>Valor Potencial:</b> R$ {oportunidadeCliente?.valorPotencial || "Não informado"}</p>
+							  <p className="ps-4">
+                  <b>Valor Potencial:</b> {formatarMoeda(Number(oportunidadeCliente?.valorPotencial))}
+                </p>
+
 							</div>
 							</details>
 						</li>

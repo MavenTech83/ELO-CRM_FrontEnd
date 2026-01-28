@@ -17,6 +17,40 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
   const data = new Date(oportunidade.dataCriacao);
   const dataValida = isNaN(data.getTime()) ? null : data;
 
+  function formatarTelefone(telefone?: string) {
+  if (!telefone) return "Não informado";
+
+  const somenteNumeros = telefone.replace(/\D/g, "");
+
+  if (somenteNumeros.length === 11) {
+    return somenteNumeros.replace(
+      /(\d{2})(\d{5})(\d{4})/,
+      "($1) $2-$3"
+    );
+  }
+
+  if (somenteNumeros.length === 10) {
+    return somenteNumeros.replace(
+      /(\d{2})(\d{4})(\d{4})/,
+      "($1) $2-$3"
+    );
+  }
+
+  return telefone; // fallback
+}
+
+function formatarMoeda(valor?: number) {
+  if (valor === null || valor === undefined) {
+    return "Não informado";
+  }
+
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(valor);
+}
+
+
   return (
     <div className="space-y-3 animate-fadeIn text-amber-50  ">
       <h1 className="text-2xl font-bold text-amber-50 (--color-picton-blue-200)">
@@ -34,7 +68,7 @@ export default function DetalhesOportunidade({ oportunidade }: Props) {
         </div>
       </div>
 
-      <p><b>Valor Potencial:</b> {oportunidade.valorPotencial}</p>
+      <p><b>Valor Potencial:</b> {formatarMoeda(Number(oportunidade.valorPotencial))}</p>
       <p><b>Cliente:</b> {oportunidade.cliente?.nome || "Não informado"}</p>
       <p>
   <b>Tipo:</b>{" "}

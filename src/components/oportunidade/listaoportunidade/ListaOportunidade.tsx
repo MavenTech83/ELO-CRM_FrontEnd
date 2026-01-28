@@ -23,6 +23,8 @@ function ListaOportunidade() {
     const [filtroValorMin, setFiltroValorMin] = useState<string>('')
     const [filtroValorMax, setFiltroValorMax] = useState<string>('')
     const [selectedCard, setSelectedCard] = useState<Oportunidade | null>(null);
+
+    // token
     const token = usuario.token
 
     useEffect(() => {
@@ -34,7 +36,7 @@ function ListaOportunidade() {
 
    useEffect(() => {
     buscarTodasOportunidades()    
-}, [])
+    }, [])
 
 
     async function buscarTodasOportunidades() { 
@@ -104,52 +106,52 @@ function ListaOportunidade() {
         <>
         <section className=" h-[75vh] rounded-4xl p-3">
             <div className="flex gap-3 h-full w-full">
-            {/* CONTEÚDO 1 - LISTAR DADOS */}
-            <div className="bg-white/10 rounded-3xl p-4 flex flex-col h-full w-3/5 gap-1 overflow-hidden">
-                <div className="flex items-center justify-between mb-4 flex-none gap-4">
-                    <h2 className="text-3xl font-bold text-amber-50">
-                        Oportunidades
-                    </h2>
-                    <section className="flex gap-4 w-2/3">
-                        <ModalCliente/>
-                        <ModalOportunidade onSuccess={buscarTodasOportunidades} />
-                    </section>
-                    
-                </div>
+                {/* CONTEÚDO 1 - LISTAR DADOS */}
+                <div className="bg-white/10 rounded-3xl p-4 flex flex-col h-full w-3/5 gap-1 overflow-hidden">
+                    <div className="flex items-center justify-between mb-4 flex-none gap-4">
+                        <h2 className="text-3xl font-bold text-amber-50">
+                            Oportunidades
+                        </h2>
+                        <section className="flex gap-4 w-2/3">
+                            <ModalCliente/>
+                            <ModalOportunidade onSuccess={buscarTodasOportunidades} />
+                        </section>
+                        
+                    </div>
 
-                <div className="flex overflow-y-auto min-h-0 space-y-2 pr-2">
-                    {/* LOADING */}
-                    {isLoading && (
-                        <div className="flex justify-center w-full my-8">
-                        <SyncLoader
-                            color="#bce7fb"
-                            size={32}
-                    />
-                </div>
-                    )}
+                    <div className="flex overflow-y-auto min-h-0 space-y-2 pr-2">
+                        {/* LOADING */}
+                        {isLoading && (
+                            <div className="flex justify-center w-full my-8">
+                            <SyncLoader
+                                color="#bce7fb"
+                                size={32}
+                            />
+                            </div>
+                        )}
 
-                    {/* MENSAGEM QUANDO NÃO TEM RESULTADOS */}
-                    {(!isLoading && oportunidadesFiltradas.length === 0) && ( 
-                        <div className="text-center my-8">
-                            <span className="text-xl">Nenhuma Oportunidade foi encontrada!</span>
-                        </div>
-                    )}
-                    
-                    {/* LISTA DE OPORTUNIDADES */}
-                    {(!isLoading && oportunidadesFiltradas.length > 0) && (
-                        <div className="grid grid-cols-2 gap-3 w-full">
-                            {oportunidadesFiltradas.map((oportunidade) => ( 
-                                <div 
-                                    key={oportunidade.id} 
-                                    onClick={() => setSelectedCard(oportunidade)}
-                                    className="cursor-pointer hover:scale-[0.98] transition-transform"
-                                >
-                                    <CardOportunidade oportunidade={oportunidade}/>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                        </div>
+                        {/* MENSAGEM QUANDO NÃO TEM RESULTADOS */}
+                        {(!isLoading && oportunidadesFiltradas.length === 0) && ( 
+                            <div className="text-center my-8">
+                                <span className="text-xl">Nenhuma Oportunidade foi encontrada!</span>
+                            </div>
+                        )}
+                        
+                        {/* LISTA DE OPORTUNIDADES */}
+                        {(!isLoading && oportunidadesFiltradas.length > 0) && (
+                            <div className="grid grid-cols-2 gap-3 w-full">
+                                {oportunidadesFiltradas.map((oportunidade) => ( 
+                                    <div 
+                                        key={oportunidade.id} 
+                                        onClick={() => setSelectedCard(oportunidade)}
+                                        className="cursor-pointer hover:scale-[0.98] transition-transform"
+                                    >
+                                        <CardOportunidade oportunidade={oportunidade}/>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             {/* CONTEÚDO 2 - FILTROS E DADOS */}
             <div className="flex flex-col bg-white/10 rounded-2xl h-full w-2/5 overflow-hidden">

@@ -12,12 +12,20 @@ Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucr
 <table>
   <th> Versão 1 </th>
   <th> Versão 2 </th>
+   <tr>
+    <td align="center">
+     <img width="100%" height="100%" alt="image" src="https://github.com/user-attachments/assets/669fd174-a3fb-484c-9032-4c63bc653e0e" />
+    </td>
+    <td align="center">
+     <img width="100%" height="100%" alt="image" alt="image" src="https://github.com/user-attachments/assets/ceb11ae5-3d00-4500-a2c5-ce829f0a096b" />
+    </td>
+  </tr>
   <tr>
     <td align="center">
       <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_ELOCRM.jpg?updatedAt=1769234663137" width="100%"/>
     </td>
     <td align="center">
-      <img src="" width="100%"/>
+     <img width="1870" height="965" alt="image" src="https://github.com/user-attachments/assets/da00f647-7944-494d-8e4a-97be6e8821d0" />
     </td>
   </tr>
   <tr>
@@ -25,7 +33,7 @@ Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucr
        <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_perfil_ELOCRM.jpg?updatedAt=1769234663505" width="100%"/>
      </td>
     <td align="center">
-      <img/>
+      <img width="1872" height="966" alt="image" src="https://github.com/user-attachments/assets/cb73e857-8d7f-4250-bc14-e73ff6f38a30" />
      </td>
   </tr>
   <tr>
@@ -33,7 +41,7 @@ Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucr
     <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_clientes_ELOCRM.jpg?updatedAt=1769234663018" width="100%"/>
     </td>
     <td align="center">
-      <img src="" width="100%"/>
+     <img width="1870" height="965" alt="image" src="https://github.com/user-attachments/assets/cb1deeb4-6d82-4e3e-80a8-bee1d8386e3c" />
     </td>
   </tr>
   <tr>
@@ -41,15 +49,7 @@ Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucr
       <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg?updatedAt=1769234663175" width="100%"/>
     </td>
     <td align="center">
-      <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o2_Oportunidade_ELOCRM.jpg" width="100%"/>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_Oportunidade_ELOCRM.jpg?updatedAt=1769234663175" width="100%"/>
-    </td>
-    <td align="center">
-      <img src="" width="100%"/>
+      <img width="1870" height="963" alt="image" src="https://github.com/user-attachments/assets/a8255f7f-3fb6-4b35-a494-731c90d85171" />
     </td>
   </tr>
   <tr>
@@ -57,9 +57,18 @@ Nosso objetivo é resolver dores comuns do mercado, como a indefinição de lucr
       <img src="https://ik.imagekit.io/5vd9mfrfv/EloCRM/vers%C3%A3o1_sobreprojeto_ELOCRM.jpg?updatedAt=1769234663445" width="100%"/>
     </td>
     <td align="center">
-      <img src="" width="100%"/>
+      <img width="1868" height="961" alt="image" src="https://github.com/user-attachments/assets/8b6b7442-ebd5-4d66-91c9-efb64dd7a8ab" />
     </td>
   </tr>
+   <tr>
+    <td align="center">
+       <img width="100%" height="100%" alt="image" src="https://github.com/user-attachments/assets/254ca4eb-6a1e-43bd-a9dc-ead538daa661" />
+    </td>
+    <td align="center">
+      <img width="100%" height="100%" alt="image" src="https://github.com/user-attachments/assets/0002d4e4-453f-45d0-852a-0df13ad0c491" />
+    </td>
+  </tr>
+ 
 </table>
 
 ### 🚀 Diferenciais e Proposta de Valor
